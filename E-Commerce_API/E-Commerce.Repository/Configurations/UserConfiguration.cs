@@ -1,4 +1,4 @@
-﻿using E_Commerce.Model.Models.User;
+﻿using E_Commerce.Model.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
