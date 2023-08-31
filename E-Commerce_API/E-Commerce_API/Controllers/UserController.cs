@@ -1,4 +1,4 @@
-﻿using E_Commerce.Model.Models.User;
+﻿using E_Commerce.Model.Models.UserModel;
 using E_Commerce.Repository.Context;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,12 +38,12 @@ namespace E_Commerce_API.Controllers
             user.Password = userValidation.Password;
             if (_userAuthentication.ValidateCredentials(user.Name, user.Password))
             {
-                var result = new LoginResult { Message = "Login successful!" };
+                var result = new Result { Message = "Login successful!" };
                 return Ok(result);
             }
             else
             {
-                var result = new LoginResult { Message = "Invalid credentials." };
+                var result = new Result { Message = "Invalid credentials." };
                 return Unauthorized(result);
             }           
            
