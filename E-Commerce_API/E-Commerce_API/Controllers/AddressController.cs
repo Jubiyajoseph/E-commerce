@@ -1,6 +1,5 @@
-﻿using E_Commerce.Model.Models.AddressModel;
-using E_Commerce.Model.Models.UserModel;
-using E_Commerce.Repository.Context;
+﻿using E_Commerce_API.Request.Command;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,30 +10,18 @@ namespace E_Commerce_API.Controllers
     [ApiController]
     public class AddressController : ControllerBase
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly IMediator _mediator;
 
-        public AddressController(E_Commerce_DbContext context)
+        public AddressController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         // POST api/<CountryController>
         [HttpPost]
-        public IActionResult AddCity([FromBody] AddressHandler addressHandler)
+        public  async Task<ActionResult<bool>> AddAddress([FromBody] AddAddressCommand command)
         {
-            Address address = new Address();
-            address.ResidentialAddress=addressHandler.ResidentialAddress;   
-            address.CityId=addressHandler.CityId;
-            address.StateId=addressHandler.StateId;
-            address.CountryId=addressHandler.CountryId;
-            address.UserId=addressHandler.UserId;
-            address.IsDeleted=addressHandler.IsDeleted; 
-            _context.Address.Add(address);
-            _context.SaveChanges();
-
-            var result = new Result { Message = "success" };
-           
-            return Ok(result);
+            return Ok(await _mediator.Send(command));
         }
 
 

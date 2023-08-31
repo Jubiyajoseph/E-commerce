@@ -18,7 +18,7 @@ namespace E_Commerce_API.Controllers
         }
         // POST api/<StateController>
         [HttpPost]
-        public IActionResult AddCity([FromBody] State state)
+        public IActionResult AddState([FromBody] State state)
         {
             _context.State.Add(state);
             _context.SaveChanges();

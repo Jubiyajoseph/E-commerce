@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Repository.Context
 {
-    public class UserAuthenticationHandler
+    public class UserAuthentication
     {
         private readonly E_Commerce_DbContext _context;
 
-        public UserAuthenticationHandler(E_Commerce_DbContext context)
+        public UserAuthentication(E_Commerce_DbContext context)
         {
             _context = context;
         }

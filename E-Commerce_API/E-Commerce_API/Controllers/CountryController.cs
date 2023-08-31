@@ -19,7 +19,7 @@ namespace E_Commerce_API.Controllers
 
         // POST api/<CountryController>
         [HttpPost]
-        public IActionResult AddCity([FromBody] Country country)
+        public IActionResult AddCountry([FromBody] Country country)
         {
             _context.Country.Add(country);
             _context.SaveChanges();

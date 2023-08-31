@@ -1,5 +1,6 @@
 using E_Commerce.Repository.Context;
 using Microsoft.EntityFrameworkCore;
+//using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,8 @@ builder.Services.AddDbContext<E_Commerce_DbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration["ConnectionString:SqlServer"]);
 });
-builder.Services.AddScoped<UserAuthenticationHandler>();
-
+builder.Services.AddScoped<UserAuthentication>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddCors(options => //for angular api
 {
     options.AddPolicy("AllowAll",

@@ -1,5 +1,6 @@
-﻿using E_Commerce.Model.Models.UserModel;
-using E_Commerce.Repository.Context;
+﻿
+using E_Commerce_API.Request.Command;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,43 +11,25 @@ namespace E_Commerce_API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly E_Commerce_DbContext _context;
-        private readonly UserAuthenticationHandler _userAuthentication;
+        private readonly IMediator _mediator;   
 
-        public UserController(E_Commerce_DbContext context,UserAuthenticationHandler userAuthentication)
+        public UserController(IMediator mediator)
         {
-            _context = context;
-            _userAuthentication = userAuthentication;
+   
+            _mediator = mediator;
         }
 
        
         [HttpPost]
-        public IActionResult AddUser([FromBody] User user)
+        public async Task<ActionResult<bool>> AddUser([FromBody] AddUserCommand command)
         {
-            _context.User.Add(user);
-            _context.SaveChanges();
-
-            return Ok("successfully Added");
-
+            return Ok(await _mediator.Send(command));
         }
-
+        
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] UserValidation userValidation)
+        public async Task<ActionResult<bool>> Login([FromBody] AddUserValidationCommand validationCommand)
         {
-            User user = new User();
-            user.Name = userValidation.Name;
-            user.Password = userValidation.Password;
-            if (_userAuthentication.ValidateCredentials(user.Name, user.Password))
-            {
-                var result = new Result { Message = "Login successful!" };
-                return Ok(result);
-            }
-            else
-            {
-                var result = new Result { Message = "Invalid credentials." };
-                return Unauthorized(result);
-            }           
-           
+           return Ok(await _mediator.Send(validationCommand));
         }
     }
 }
