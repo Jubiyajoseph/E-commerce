@@ -1,0 +1,12 @@
+docker/
+.vs
+*.cache
+*.dll
+*.exe
+*.pdb
+/build/
+*.suo
+*.user
+.vscode/
+bin/
+obj/

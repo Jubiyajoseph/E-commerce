@@ -1,4 +1,4 @@
-﻿using E_Commerce.Model.Models.User;
+﻿using E_Commerce.Model.Models.UserModel;
 using E_Commerce.Repository.Context;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,28 +11,15 @@ namespace E_Commerce_API.Controllers
     public class UserController : ControllerBase
     {
         private readonly E_Commerce_DbContext _context;
-        private readonly UserAuthentication _userAuthentication;
+        private readonly UserAuthenticationHandler _userAuthentication;
 
-        public UserController(E_Commerce_DbContext context,UserAuthentication userAuthentication)
+        public UserController(E_Commerce_DbContext context,UserAuthenticationHandler userAuthentication)
         {
             _context = context;
             _userAuthentication = userAuthentication;
         }
-        // GET: api/<UserController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
-        //// GET api/<UserController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        // POST api/<UserController>
+       
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
@@ -46,27 +33,20 @@ namespace E_Commerce_API.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UserValidation userValidation)
         {
-          User user = new User();
+            User user = new User();
             user.Name = userValidation.Name;
             user.Password = userValidation.Password;
             if (_userAuthentication.ValidateCredentials(user.Name, user.Password))
             {
-                return Ok("Login successful!");
+                var result = new Result { Message = "Login successful!" };
+                return Ok(result);
             }
-
-            return Unauthorized("Invalid credentials.");
+            else
+            {
+                var result = new Result { Message = "Invalid credentials." };
+                return Unauthorized(result);
+            }           
            
         }
-        //// PUT api/<UserController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<UserController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

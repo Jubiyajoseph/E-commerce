@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
 
     this.loginService.Login(username,password).subscribe(
       ()=>{
-        this.router.navigate(['/home']);
+        this.router.navigate(['./home']);
        },
       ()=> {
         alert('Insert valid Username or Password')
