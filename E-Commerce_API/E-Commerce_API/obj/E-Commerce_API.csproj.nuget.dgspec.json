@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj": {}
+    "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj": {}
   },
   "projects": {
-    "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj": {
+    "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj",
+        "projectUniqueName": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj",
         "projectName": "E-Commerce.Model",
-        "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj",
-        "packagesPath": "C:\\Users\\CQ-Rachana\\.nuget\\packages\\",
-        "outputPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\obj\\",
+        "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj",
+        "packagesPath": "C:\\Users\\CQ-Jubiya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CQ-Rachana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CQ-Jubiya\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,21 +77,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj": {
+    "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
         "projectName": "E-Commerce.Repository",
-        "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
-        "packagesPath": "C:\\Users\\CQ-Rachana\\.nuget\\packages\\",
-        "outputPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\obj\\",
+        "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
+        "packagesPath": "C:\\Users\\CQ-Jubiya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CQ-Rachana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CQ-Jubiya\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -105,8 +105,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj": {
-                "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj"
+              "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj": {
+                "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj"
               }
             }
           }
@@ -158,21 +158,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj": {
+    "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj",
+        "projectUniqueName": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj",
         "projectName": "E-Commerce_API",
-        "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj",
-        "packagesPath": "C:\\Users\\CQ-Rachana\\.nuget\\packages\\",
-        "outputPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce_API\\obj\\",
+        "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce_API\\E-Commerce_API.csproj",
+        "packagesPath": "C:\\Users\\CQ-Jubiya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CQ-Rachana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CQ-Jubiya\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -180,14 +180,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj": {
-                "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj"
+              "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj": {
+                "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj"
               }
             }
           }
@@ -236,7 +237,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
