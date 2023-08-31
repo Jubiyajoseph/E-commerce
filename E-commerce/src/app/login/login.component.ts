@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
 
-  constructor(private loginService: LoginService,private fb: FormBuilder,private router: Router)
+  constructor(private loginService: LoginService,private formBuilder: FormBuilder,private router: Router)
   {  
   }
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
   });
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this.formBuilder.group({
       userName: new FormControl('',[Validators.required]),
       password: new FormControl('',[Validators.minLength(6),Validators.required])
     })
@@ -37,11 +37,10 @@ export class LoginComponent implements OnInit{
     this.loginService.Login(username,password).subscribe(
       ()=>{
         this.router.navigate(['/home']);
-       }
-    //,
-    //   error=> {
-    //     alert('Insert valid Username or Password')
-    //   }
+       },
+      ()=> {
+        alert('Insert valid Username or Password')
+      }
      );
   }
 
