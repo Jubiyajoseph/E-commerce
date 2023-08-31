@@ -13,7 +13,7 @@ builder.Services.AddDbContext<E_Commerce_DbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration["ConnectionString:SqlServer"]);
 });
-builder.Services.AddScoped<UserAuthentication>();
+builder.Services.AddScoped<UserAuthenticationHandler>();
 
 builder.Services.AddCors(options => //for angular api
 {
@@ -37,6 +37,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

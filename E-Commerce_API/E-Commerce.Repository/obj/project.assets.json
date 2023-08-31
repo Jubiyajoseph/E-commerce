@@ -2034,19 +2034,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CQ-Rachana\\.nuget\\packages\\": {}
+    "C:\\Users\\CQ-Jubiya\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
+      "projectUniqueName": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
       "projectName": "E-Commerce.Repository",
-      "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
-      "packagesPath": "C:\\Users\\CQ-Rachana\\.nuget\\packages\\",
-      "outputPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\obj\\",
+      "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\E-Commerce.Repository.csproj",
+      "packagesPath": "C:\\Users\\CQ-Jubiya\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\CQ-Rachana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CQ-Jubiya\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2060,8 +2060,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj": {
-              "projectPath": "D:\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj"
+            "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj": {
+              "projectPath": "C:\\Users\\CQ-Jubiya\\cqtrain\\Project\\E-commerce\\E-Commerce_API\\E-Commerce.Model\\E-Commerce.Model.csproj"
             }
           }
         }
@@ -2113,7 +2113,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

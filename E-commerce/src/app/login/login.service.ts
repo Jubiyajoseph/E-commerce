@@ -14,7 +14,7 @@ export class LoginService {
   Login(username: string, password:string): Observable<any>
   {
     const body = {
-      username: username,
+      name: username,
       password: password
     }
     return this.http.post(`${this.baseUrl}/api/User/Login`, body)   
