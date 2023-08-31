@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['./home']);
        },
       ()=> {
-        alert('Insert valid Username or Password')
+        alert('Insert valid Username or Password');
       }
      );
   }
