@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
+import { EcommerceService } from './lECommerce.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
 
-  constructor(private loginService: LoginService,private formBuilder: FormBuilder,private router: Router)
+  constructor(private loginService: EcommerceService,private formBuilder: FormBuilder,private router: Router)
   {  
   }
 
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
 
     this.loginService.Login(username,password).subscribe(
       ()=>{
-        this.router.navigate(['./home']);
+        this.router.navigate(['./product-list']);
        },
       ()=> {
         alert('Insert valid Username or Password');

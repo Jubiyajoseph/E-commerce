@@ -6,19 +6,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
