@@ -1,4 +1,5 @@
 ﻿using E_Commerce_API.Request.Command;
+using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,25 @@ namespace E_Commerce_API.Controllers
             _mediator = mediator;
         }
 
-        // POST api/<ProductController>
         [HttpPost]
         public async Task<ActionResult<bool>> AddProduct([FromBody] AddProductCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
+
+        [HttpGet("{productId}")]
+        public async Task<ActionResult<AddProductCommand>> GetProduct(int productId)
+        {
+            var query = new GetProductQuery { ProductID = productId };
+            var product = await _mediator.Send(query);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
 
         //// PUT api/<ProductController>/5
         //[HttpPut("{id}")]
@@ -34,5 +48,6 @@ namespace E_Commerce_API.Controllers
         //public void Delete(int id)
         //{
         //}
+        
     }
 }
