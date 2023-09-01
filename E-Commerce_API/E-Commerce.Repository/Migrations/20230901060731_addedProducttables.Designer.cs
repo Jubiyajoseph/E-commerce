@@ -3,6 +3,7 @@ using E_Commerce.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Repository.Migrations
 {
     [DbContext(typeof(E_Commerce_DbContext))]
-    partial class E_Commerce_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230901060731_addedProducttables")]
+    partial class addedProducttables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,10 +177,10 @@ namespace E_Commerce.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(10,3)");
+                        .HasColumnType("decimal(8,2)");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(8,5)");
+                        .HasColumnType("decimal(6,2)");
 
                     b.HasKey("ProductId");
 
