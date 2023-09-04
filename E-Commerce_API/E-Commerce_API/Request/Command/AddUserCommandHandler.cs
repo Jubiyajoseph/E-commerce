@@ -15,13 +15,9 @@ namespace E_Commerce_API.Request.Command
 
         public async Task<bool> Handle(AddUserCommand command, CancellationToken cancellationToken)
         {
-            User user = new User();
-            user.Name = command.Name;
-            user.Email = command.Email;
-            user.Password = command.Password;
-            user.Phone = command.Phone;
+            User user = new (command.Name,command.Email,command.Phone,command.Password);
             _context.User.Add(user);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return true;
 
         }

@@ -12,7 +12,7 @@ import { IProduct } from '../iproduct';
 export class ProductListComponent implements OnInit {
 
   products:IProduct[]=[];
-  slicedproductList:IProduct[]=[];
+  slicedproductList:Array<IProduct>=[];
   currentPage: number = 1;
   pageSize: number = 10;
   totalPages: number = 5;
@@ -27,20 +27,21 @@ export class ProductListComponent implements OnInit {
   }
   ngOnInit(): void 
   {   
-    this.filteredproduct=this.products.filter(x=>x.Name.toLowerCase());
-    this.loadProducts(this.currentPage);
+    //this.filteredproduct=this.products.filter(x=>x.Name.toLowerCase());
+    this.loadProducts();
 
   }
 
-  loadProducts(page:number)
+  loadProducts()
   {
     this.appService.getProducts().subscribe((data)=>
     {
       this.products = data;
+    //   const startIndex = (page-1) * this.pageSize;
+    // this.slicedproductList = this.products.slice(startIndex, startIndex+this.pageSize)
+    // this.currentPage = page;
     });
-    const startIndex = (page-1) * this.pageSize;
-    this.slicedproductList = this.products.slice(startIndex, startIndex+this.pageSize)
-    this.currentPage = page;
+    
   }
   search(){
     this.filteredproduct = this.products

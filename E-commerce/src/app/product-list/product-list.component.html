@@ -7,24 +7,24 @@
                     <th id="th">Id</th>
                     <th id="th">ProductName</th>
                 </tr>
-                <tr *ngFor="let product of slicedproductList">
-                    <td>{{product.Id}}</td>
-                    <td>{{product.Name}}</td>
+                <tr *ngFor="let product of products">
+                    <td id="td">{{product.id}}</td>
+                    <td id="td">{{product.name}}</td>
                 </tr>
             </table>
 
         </div>
-        <div>
+        <!-- <div>
             <input type="text" [formControl]="searchText" placeholder="Search" />
             <button id="button" (click)="search()">search</button>
-        </div>
+        </div> -->
     </div>
 </form>
 <form>
     <div id="div" class="pagination">
-        <button id="button" (click)="loadProducts(currentPage > 1 ? currentPage - 1 : 1)"
-            [disabled]="currentPage === 1">Previous</button>
-        <button id="button" (click)="loadProducts(currentPage + 1)"
-            [disabled]="currentPage === totalPages">Next</button>
+       
+        <!-- <button id="button" (click)="loadProducts()">view</button> -->
+        <button id="button"> Previous </button> 
+        <button id="button" >Next </button>
     </div>
-</form>
+</form> 

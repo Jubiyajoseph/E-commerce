@@ -1,7 +1,9 @@
-﻿using E_Commerce_API.Request.Command;
+﻿using E_Commerce.Repository.Context;
+using E_Commerce_API.Request.Command;
 using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,8 +14,10 @@ namespace E_Commerce_API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ProductController(IMediator mediator)
+        private E_Commerce_DbContext _context;
+        public ProductController(E_Commerce_DbContext context, IMediator mediator)
         {
+            _context = context;
             _mediator = mediator;
         }
 
@@ -36,6 +40,12 @@ namespace E_Commerce_API.Controllers
             return Ok(product);
         }
 
+        [HttpGet]
+        public IActionResult GetAllProduct()
+        { 
+            return Ok(_context.Product); 
+        }
+
 
         //// PUT api/<ProductController>/5
         //[HttpPut("{id}")]
@@ -48,6 +58,6 @@ namespace E_Commerce_API.Controllers
         //public void Delete(int id)
         //{
         //}
-        
+
     }
 }

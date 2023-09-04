@@ -13,15 +13,9 @@ namespace E_Commerce_API.Request.Command
         }
         public async Task<bool> Handle(AddAddressCommand command, CancellationToken cancellationToken)
         {
-            Address address = new Address();  
-            address.ResidentialAddress = command.ResidentialAddress;
-            address.CityId = command.CityId;    
-            address.StateId = command.StateId;
-            address.CountryId = command.CountryId;
-            address.UserId = command.UserId;
-            address.IsDeleted = command.IsDeleted;
+            Address address = new (command.ResidentialAddress, command.CityId,command.StateId,command.CountryId,command.UserId,command.IsDeleted);  
             _context.Address.Add(address);
-            await _context.SaveChangesAsync();  
+            await _context.SaveChangesAsync(cancellationToken);  
             return true;    
         }
     }

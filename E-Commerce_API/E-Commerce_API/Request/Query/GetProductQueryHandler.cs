@@ -14,10 +14,10 @@ namespace E_Commerce_API.Request.Query
         }
         public async Task<AddProductCommand> Handle(GetProductQuery query, CancellationToken cancellationToken)
         {
-            var product = await _context.Product.Where(p => p.ProductId == query.ProductID)
+            var product = await _context.Product.Where(p => p.Id == query.ProductID)
                 .Select(p => new AddProductCommand
                 {
-                    ProductId = p.ProductId,
+                    ProductId = p.Id,
                     Name = p.Name,
                     Weight = p.Weight,
                     Stock = p.Stock,
