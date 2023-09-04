@@ -18,7 +18,7 @@ export class EcommerceService {
       name: username,
       password: password
     }
-    return this.http.post(`${this.baseUrl}/api/User/Login`, body)   
+    return this.http.post(`${this.baseUrl}/api/User/login`, body)   
   }
 
   getProducts(): Observable<IProduct[]>{

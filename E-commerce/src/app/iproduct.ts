@@ -1,9 +1,9 @@
 export interface IProduct {
-    Id:number;
-    Name:string;
-    Weight:number;
-    Stock:number;
-    BrandId:number;
-    CategoryId:number;
-    UnitPrice:number;
+    id:number;
+    name:string;
+    weight:number;
+    stock:number;
+    brandId:number;
+    categoryId:number;
+    unitPrice:number;
 }

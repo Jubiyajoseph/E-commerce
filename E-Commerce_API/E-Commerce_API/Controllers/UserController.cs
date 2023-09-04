@@ -26,7 +26,7 @@ namespace E_Commerce_API.Controllers
             return Ok(await _mediator.Send(command));
         }
         
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<ActionResult<bool>> Login([FromBody] AddUserValidationCommand validationCommand)
         {
            return Ok(await _mediator.Send(validationCommand));

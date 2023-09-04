@@ -13,15 +13,9 @@ namespace E_Commerce_API.Request.Command
         }
         public async Task<bool> Handle(AddProductCommand command, CancellationToken cancellationToken)
         {
-            Product product = new Product();
-            product.Name = command.Name;
-            product.Weight = command.Weight;
-            product.Stock = command.Stock;
-            product.BrandId = command.BrandId;
-            product.CategoryId = command.CategoryId;
-            product.UnitPrice = command.UnitPrice;
+            Product product = new(command.Name,command.Weight,command.Stock,command.BrandId,command.CategoryId,command.UnitPrice);
             _context.Product.Add(product);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
     }

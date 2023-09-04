@@ -17,10 +17,7 @@ export class LoginComponent implements OnInit{
 
   showErrors = false;
 
-  loginForm = new FormGroup({
-    userName: new FormControl(''),
-    password: new FormControl('')
-  });
+  loginForm!: FormGroup;
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -31,17 +28,13 @@ export class LoginComponent implements OnInit{
 
   onClickLogin()
   {
-    const username =this.loginForm.get('userName')?.value!;
+    const name =this.loginForm.get('userName')?.value!;
     const password =this.loginForm.get('password')?.value!;
 
-    this.loginService.Login(username,password).subscribe(
-      ()=>{
-        this.router.navigate(['./product-list']);
-       },
-      ()=> {
-        alert('Insert valid Username or Password');
-      }
-     );
+    this.loginService.Login(name,password).subscribe({
+      next: () => { this.router.navigate(['./product-list']); },
+      error: () => { alert('Insert valid Username or Password'); }
+    });
   }
 
 }

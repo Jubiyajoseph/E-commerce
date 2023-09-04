@@ -12,9 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<E_Commerce_DbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration["ConnectionString:SqlServer"]);
+    
+    option.UseSqlServer(builder.Configuration["ConnectionString:SqlServer"], 
+        options => options.MigrationsAssembly("E-Commerce.Repository"));
 });
-builder.Services.AddScoped<UserAuthentication>();
+//builder.Services.AddScoped<UserAuthentication>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddCors(options => //for angular api
 {

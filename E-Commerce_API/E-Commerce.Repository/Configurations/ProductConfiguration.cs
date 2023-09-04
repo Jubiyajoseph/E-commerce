@@ -13,6 +13,7 @@ namespace E_Commerce.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.Property(x => x.Id).HasColumnName("ProductId").ValueGeneratedOnAdd();
             builder.Property(p => p.Name).IsRequired().HasMaxLength(50);
             builder.Property(p => p.Weight).IsRequired().HasColumnType("decimal(8,5)");
             builder.Property(p => p.Stock).IsRequired();
