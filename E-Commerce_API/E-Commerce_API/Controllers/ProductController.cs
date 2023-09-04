@@ -15,6 +15,7 @@ namespace E_Commerce_API.Controllers
     {
         private readonly IMediator _mediator;
         private E_Commerce_DbContext _context;
+        private const int productPages = 5;
         public ProductController(E_Commerce_DbContext context, IMediator mediator)
         {
             _context = context;
@@ -41,11 +42,13 @@ namespace E_Commerce_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllProduct()
+        public IActionResult GetAllProduct(int page=1)
         { 
-            return Ok(_context.Product); 
+            var products = _context.Product.OrderBy(p=>p.Id).Skip((page-1)* productPages).Take(productPages).ToList();
+            return Ok(products);
+            //return Ok(_context.Product); 
         }
-
+        
 
         //// PUT api/<ProductController>/5
         //[HttpPut("{id}")]

@@ -21,7 +21,7 @@ export class EcommerceService {
     return this.http.post(`${this.baseUrl}/api/User/login`, body)   
   }
 
-  getProducts(): Observable<IProduct[]>{
-    return this.http.get<IProduct[]>(`${this.baseUrl}/api/Product`)
+  getProducts(page: number): Observable<IProduct[]>{
+    return this.http.get<IProduct[]>(`${this.baseUrl}/api/Product?page=${page}`)
   }
 }

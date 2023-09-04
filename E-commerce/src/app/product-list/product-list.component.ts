@@ -12,10 +12,9 @@ import { IProduct } from '../iproduct';
 export class ProductListComponent implements OnInit {
 
   products:IProduct[]=[];
-  slicedproductList:Array<IProduct>=[];
-  currentPage: number = 1;
-  pageSize: number = 10;
-  totalPages: number = 5;
+  currentPage = 1;
+  
+ 
 
   //search products
   public productFormGroup!: FormGroup;
@@ -25,24 +24,36 @@ export class ProductListComponent implements OnInit {
   
     
   }
-  ngOnInit(): void 
-  {   
-    //this.filteredproduct=this.products.filter(x=>x.Name.toLowerCase());
-    this.loadProducts();
-
+  ngOnInit()
+  {     
+    this.loadProducts(this.currentPage);
   }
 
-  loadProducts()
+  loadProducts(page:number)
   {
-    this.appService.getProducts().subscribe((data)=>
+    this.appService.getProducts(page).subscribe((data)=>
     {
       this.products = data;
-    //   const startIndex = (page-1) * this.pageSize;
-    // this.slicedproductList = this.products.slice(startIndex, startIndex+this.pageSize)
-    // this.currentPage = page;
-    });
-    
+    });    
   }
+
+  PreviousPage()
+  {
+    //console.log("Helloprevious");
+    if (this.currentPage > 1)
+    {
+      this.currentPage--;
+      this.loadProducts(this.currentPage);
+    }
+  }
+
+  NextPage()
+  {
+    //console.log("Hello");
+    this.currentPage++;
+    this.loadProducts(this.currentPage);
+  }
+
   search(){
     this.filteredproduct = this.products
   }
