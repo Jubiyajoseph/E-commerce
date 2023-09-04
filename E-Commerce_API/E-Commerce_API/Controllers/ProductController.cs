@@ -1,4 +1,5 @@
-﻿using E_Commerce.Repository.Context;
+﻿using E_Commerce.Model.Models.ProductsModel;
+using E_Commerce.Repository.Context;
 using E_Commerce_API.Request.Command;
 using E_Commerce_API.Request.Query;
 using MediatR;
@@ -47,17 +48,19 @@ namespace E_Commerce_API.Controllers
         }
 
 
-        //// PUT api/<ProductController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpGet("search")]
+        public ActionResult<IEnumerable<Product>> SearchProducts(string searchTerm)
+        {
+            var query = _context.Product
+                .Where(p =>
+                    p.Name.Contains(searchTerm) ||
+                    (p.Category.Name != null && p.Category.Name.Contains(searchTerm)) ||
+                    (p.Brand.Name != null && p.Brand.Name.Contains(searchTerm))
+                )
+                .ToList();
 
-        //// DELETE api/<ProductController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+            return Ok(query);
+        }
 
-    }
+        }
 }
