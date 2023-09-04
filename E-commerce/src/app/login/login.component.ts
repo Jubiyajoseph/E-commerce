@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EcommerceService } from './lECommerce.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from './Login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
 
-  constructor(private loginService: EcommerceService,private formBuilder: FormBuilder,private router: Router)
+  constructor(private loginService: LoginService,private formBuilder: FormBuilder,private router: Router)
   {  
   }
 

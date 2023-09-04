@@ -14,16 +14,14 @@
             </table>
 
         </div>
-        <!-- <div>
-            <input type="text" [formControl]="searchText" placeholder="Search" />
+        <div>
+            <input type="text" [(ngModel)]="searchTerm" placeholder="Search" size="134px"/>
             <button id="button" (click)="search()">search</button>
-        </div> -->
+        </div> 
     </div>
 </form>
 <form>
-    <div id="div" class="pagination">
-       
-        <!-- <button id="button" (click)="loadProducts()">view</button> -->
+    <div id="div" class="pagination">             
         <button id="button"> Previous </button> 
         <button id="button" >Next </button>
     </div>
