@@ -14,12 +14,14 @@ export class ProductService {
 
 
   
-  getProducts(): Observable<IProduct[]>{
-    return this.http.get<IProduct[]>(`${this.baseUrl}/api/Product`)
+  getProducts(page:number): Observable<IProduct[]>{
+    return this.http.get<IProduct[]>(`${this.baseUrl}/api/Product?page=${page}`)
   }
 
   getSearchList(searchTerm:string):Observable<IProduct[]>
   {
-    return this.http.get<IProduct[]>(`${this.baseUrl}/search?searchTerm=${searchTerm}`)
+    return this.http.get<IProduct[]>(`${this.baseUrl}/api/Product/search?searchTerm=${searchTerm}`)
   }
+
+
 }

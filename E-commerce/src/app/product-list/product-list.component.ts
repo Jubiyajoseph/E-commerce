@@ -12,39 +12,53 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit {
 
   products:IProduct[]=[];
-  slicedproductList:Array<IProduct>=[];
-  currentPage: number = 1;
-  pageSize: number = 10;
-  totalPages: number = 5;
+  currentPage = 1;
+  
+ 
 
-  //search products
+  
   public productFormGroup!: FormGroup;
-  searchTerm!: string;
+  
   filteredSearchList:Array<IProduct>=[];
   constructor(private productService: ProductService,private formBuilder: FormBuilder,private router: Router) {
-  
+    this.productFormGroup = this.formBuilder.group({
+       searchTerm: [''] })
     
   }
-  ngOnInit(): void 
-  {   
-    //this.filteredproduct=this.products.filter(x=>x.Name.toLowerCase());
-    this.loadProducts();
-
+  ngOnInit()
+  {     
+    this.loadProducts(this.currentPage);
   }
 
-  loadProducts()
+  loadProducts(page:number)
   {
-    this.productService.getProducts().subscribe((data)=>
+    this.productService.getProducts(page).subscribe((data)=>
     {
       this.products = data;
     });
     
   }
 
-  search(){
-    this.productService.getSearchList(this.searchTerm).subscribe((data)=>
+  PreviousPage()
+  {
+    if (this.currentPage > 1)
     {
-      this.products= data;
-    });
+      this.currentPage--;
+      this.loadProducts(this.currentPage);
+    }
+  }
+
+  NextPage()
+  {
+    this.currentPage++;
+    this.loadProducts(this.currentPage);
+  }
+
+  search()
+  {
+    const searchTerm = this.productFormGroup.value.searchTerm
+     this.productService.getSearchList(searchTerm).subscribe((data)=>
+     {
+      this.products = data;});
   }
 }
