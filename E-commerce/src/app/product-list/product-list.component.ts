@@ -16,12 +16,13 @@ export class ProductListComponent implements OnInit {
   
  
 
-  //search products
+  
   public productFormGroup!: FormGroup;
-  searchTerm!: string;
+  
   filteredSearchList:Array<IProduct>=[];
   constructor(private productService: ProductService,private formBuilder: FormBuilder,private router: Router) {
-  
+    this.productFormGroup = this.formBuilder.group({
+       searchTerm: [''] })
     
   }
   ngOnInit()
@@ -31,7 +32,7 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(page:number)
   {
-    this.productService.getProducts().subscribe((data)=>
+    this.productService.getProducts(page).subscribe((data)=>
     {
       this.products = data;
     });
@@ -53,10 +54,11 @@ export class ProductListComponent implements OnInit {
     this.loadProducts(this.currentPage);
   }
 
-  search(){
-    this.productService.getSearchList(this.searchTerm).subscribe((data)=>
-    {
-      this.products= data;
-    });
+  search()
+  {
+    const searchTerm = this.productFormGroup.value.searchTerm
+     this.productService.getSearchList(searchTerm).subscribe((data)=>
+     {
+      this.products = data;});
   }
 }

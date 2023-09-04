@@ -1,5 +1,9 @@
 <form align="center" [formGroup]="productFormGroup">
     <div id="div" class="product-list">
+        <div>
+            <input type="text" formControlName="searchTerm" placeholder="Search" size="134px"/>
+            <button id="button" (click)="search()">search</button>
+        </div> 
         <div class="product-item" >
             <!-- Display product details -->
             <table id="table">
@@ -14,10 +18,7 @@
             </table>
 
         </div>
-        <div>
-            <input type="text" [(ngModel)]="searchTerm" placeholder="Search" size="134px"/>
-            <button id="button" (click)="search()">search</button>
-        </div> 
+        
     </div>
 </form>
 <form>
