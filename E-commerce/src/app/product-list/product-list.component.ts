@@ -39,7 +39,6 @@ export class ProductListComponent implements OnInit {
 
   PreviousPage()
   {
-    //console.log("Helloprevious");
     if (this.currentPage > 1)
     {
       this.currentPage--;
@@ -49,7 +48,6 @@ export class ProductListComponent implements OnInit {
 
   NextPage()
   {
-    //console.log("Hello");
     this.currentPage++;
     this.loadProducts(this.currentPage);
   }
