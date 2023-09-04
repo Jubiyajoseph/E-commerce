@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { EcommerceService } from '../login/lECommerce.service';
 import { IProduct } from '../iproduct';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -18,9 +18,9 @@ export class ProductListComponent implements OnInit {
 
   //search products
   public productFormGroup!: FormGroup;
-  searchText = new FormControl('');
-  filteredproduct:Array<IProduct>=[];
-  constructor(private appService: EcommerceService,private formBuilder: FormBuilder,private router: Router) {
+  searchTerm!: string;
+  filteredSearchList:Array<IProduct>=[];
+  constructor(private productService: ProductService,private formBuilder: FormBuilder,private router: Router) {
   
     
   }
@@ -31,10 +31,11 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(page:number)
   {
-    this.appService.getProducts(page).subscribe((data)=>
+    this.productService.getProducts().subscribe((data)=>
     {
       this.products = data;
-    });    
+    });
+    
   }
 
   PreviousPage()
@@ -53,6 +54,9 @@ export class ProductListComponent implements OnInit {
   }
 
   search(){
-    this.filteredproduct = this.products
+    this.productService.getSearchList(this.searchTerm).subscribe((data)=>
+    {
+      this.products= data;
+    });
   }
 }
