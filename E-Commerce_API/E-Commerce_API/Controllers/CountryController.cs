@@ -1,6 +1,7 @@
 ﻿using E_Commerce.Model.Models.AddressModel;
 using E_Commerce.Repository.Context;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,6 +27,13 @@ namespace E_Commerce_API.Controllers
             return Ok();
         }
 
-       
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        {
+            var country = await _context.Country.ToListAsync();
+            return Ok(country);
+        }
+
+
     }
 }

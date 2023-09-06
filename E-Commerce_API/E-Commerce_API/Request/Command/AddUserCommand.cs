@@ -5,6 +5,7 @@ namespace E_Commerce_API.Request.Command
     public class AddUserCommand: IRequest<bool>
 
     {
+        public int UserId { get; set; }
         public string Name { get; set; } = string.Empty;
 
         public string Email { get; set; } = string.Empty;
