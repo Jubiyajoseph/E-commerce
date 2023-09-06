@@ -11,19 +11,16 @@
                     <th id="th">Id</th>
                     <th id="th">ProductName</th>
                 </tr>
-                <tr *ngFor="let product of products">
+                <tr *ngFor="let product of products" (click)="getDetails(product)">
                     <td id="td">{{product.id}}</td>
                     <td id="td">{{product.name}}</td>
                 </tr>
             </table>
-
-        </div>
-        
+        </div>       
     </div>
 </form>
 <form>
-    <div id="div" class="pagination">
-       
+    <div id="div" class="pagination"> 
         <button id="button" (click)="PreviousPage()"> Previous </button> 
         <button id="button" (click)="NextPage()">Next </button>
     </div>

@@ -9,7 +9,7 @@ namespace E_Commerce.Model.Models.ProductsModel
     public class Product
     {
         public int Id { get;  }
-        public string Name { get; private set; }= string.Empty;
+        public string Name { get; private set; }
         public decimal Weight { get; private set; }
         public int  Stock { get; private set; }
         public int BrandId { get; private set; }

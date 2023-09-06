@@ -9,6 +9,9 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { AddToWishlistComponent } from './add-to-wishlist/add-to-wishlist.component';
 import { AddressComponent } from './address/address.component';
 
 @NgModule({
@@ -17,6 +20,9 @@ import { AddressComponent } from './address/address.component';
     LoginComponent,
     HomeComponent,
     ProductListComponent,
+    ProductDetailsComponent,
+    AddToCartComponent,
+    AddToWishlistComponent,
     AddressComponent
   ],
   imports: [

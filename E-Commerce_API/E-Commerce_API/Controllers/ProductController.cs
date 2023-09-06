@@ -29,8 +29,8 @@ namespace E_Commerce_API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpGet("{productId}")]
-        public async Task<ActionResult<AddProductCommand>> GetProduct(int productId)
+        [HttpGet("{productId}")] //getprodcuttable details by productid
+        public async Task<ActionResult<ProductDetailsQuery>> GetProduct(int productId)
         {
             var query = new GetProductQuery { ProductID = productId };
             var product = await _mediator.Send(query);
@@ -42,7 +42,9 @@ namespace E_Commerce_API.Controllers
             return Ok(product);
         }
 
-        [HttpGet]
+
+
+        [HttpGet] 
         public IActionResult GetAllProduct(int page=1)
         { 
             var products = _context.Product.OrderBy(p=>p.Id).Skip((page-1)* productPages).Take(productPages).ToList();
@@ -57,8 +59,8 @@ namespace E_Commerce_API.Controllers
             var query = _context.Product
                 .Where(p =>
                     p.Name.Contains(searchTerm) ||
-                    (p.Category.Name != null && p.Category.Name.Contains(searchTerm)) ||
-                    (p.Brand.Name != null && p.Brand.Name.Contains(searchTerm))
+                    (p.Category!.Name != null && p.Category.Name.Contains(searchTerm)) ||
+                    (p.Brand!.Name != null && p.Brand.Name.Contains(searchTerm))
                 )
                 .ToList();
 
