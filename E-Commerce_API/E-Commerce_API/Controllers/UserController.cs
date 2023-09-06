@@ -1,5 +1,7 @@
 ﻿
+using E_Commerce.Model.Models.ProductsModel;
 using E_Commerce_API.Request.Command;
+using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,5 +33,20 @@ namespace E_Commerce_API.Controllers
         {
            return Ok(await _mediator.Send(validationCommand));
         }
+
+        [HttpGet]
+
+        public async Task<ActionResult<AddUserCommand>> GetUserId(string name)
+        {
+            var query = new GetUserQuery { Name = name };
+            var userId = await _mediator.Send(query);
+
+            if (userId == null)
+            {
+                return NotFound();
+            }
+            return Ok(userId);
+        }
+
     }
 }

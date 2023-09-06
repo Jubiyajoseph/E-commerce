@@ -1,0 +1,46 @@
+<form [formGroup]="addressForm" (ngSubmit)="onClickAddress()">
+
+    <label>Enter your address:</label>
+    <input type="text" formControlName="address">
+    <br>
+
+    <label>City:</label>
+    <select formControlName="city" >
+      <option value="">Select a city</option>
+      <option *ngFor="let city of cities" [value]="city.cityId">{{ city.name }}</option>
+    </select>
+
+    <br>
+    <label>State:</label>
+    <select formControlName="state" >
+      <option value="">Select a state</option>
+      <option *ngFor="let state of states" [value]="state.stateId">{{ state.name }}</option>
+    </select>
+
+    <br>
+    <label>Country:</label>
+    <select formControlName="country" >
+      <option value="">Select a country</option>
+      <option *ngFor="let country of countries" [value]="country.countryId">{{ country.name }}</option>
+    </select>
+    <br>
+
+    <button type="submit" (click)="showErrors= true">Add Address</button>
+</form>
+
+
+<div *ngIf="showErrors && addressForm?.get('address')?.errors?.['required']">
+    First name is required
+</div>
+
+<div *ngIf="showErrors && addressForm?.get('city')?.errors?.['required']">
+    City is required
+</div>
+
+<div *ngIf="showErrors && addressForm?.get('state')?.errors?.['required']">
+    State is required
+</div>
+
+<div *ngIf="showErrors && addressForm?.get('country')?.errors?.['required']">
+    Country is required
+</div>
