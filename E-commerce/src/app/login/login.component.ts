@@ -8,11 +8,10 @@ import { LoginService } from './Login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
 
-  constructor(private loginService: LoginService,private formBuilder: FormBuilder,private router: Router)
-  {  
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private router: Router) {
   }
 
   showErrors = false;
@@ -21,20 +20,21 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      userName: new FormControl('',[Validators.required]),
-      password: new FormControl('',[Validators.minLength(6),Validators.required])
+      userName: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.minLength(6), Validators.required])
     })
   }
 
-  onClickLogin()
-  {
-    const name =this.loginForm.get('userName')?.value!;
-    const password =this.loginForm.get('password')?.value!;
+  onClickLogin() {
+    const name = this.loginForm.get('userName')?.value!;
+    const password = this.loginForm.get('password')?.value!;
 
-    this.loginService.Login(name,password).subscribe({
+    this.loginService.Login(name, password).subscribe({
       next: () => { this.router.navigate(['./product-list']); },
       error: () => { alert('Insert valid Username or Password'); }
     });
+
+    
   }
 
 }

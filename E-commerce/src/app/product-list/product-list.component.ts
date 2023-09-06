@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IProduct } from '../iproduct';
 import { ProductService } from '../product.service';
@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   public productFormGroup!: FormGroup;
   
   filteredSearchList:Array<IProduct>=[];
-  constructor(private productService: ProductService,private formBuilder: FormBuilder,private router: Router) {
+  constructor(private productService: ProductService,private formBuilder: FormBuilder) {
     this.productFormGroup = this.formBuilder.group({
        searchTerm: [''] })
     
@@ -61,4 +61,5 @@ export class ProductListComponent implements OnInit {
      {
       this.products = data;});
   }
+
 }

@@ -9,13 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './product-list/product-list.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProductListComponent
+    ProductListComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,
