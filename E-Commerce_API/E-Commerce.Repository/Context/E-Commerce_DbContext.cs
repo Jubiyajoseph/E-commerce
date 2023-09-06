@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Model.Models.AddressModel;
+using E_Commerce.Model.Models.OrderModel;
 using E_Commerce.Model.Models.ProductsModel;
 using E_Commerce.Model.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace E_Commerce.Repository.Context
         public DbSet<Brand> Brand { get; set; } = null!;
         public DbSet<Category> Category { get; set; } = null!;
         public DbSet<Product> Product { get; set; } = null!;
+        public DbSet<WishList> WishList { get; set; } = null!;
 
 
 

@@ -116,6 +116,30 @@ namespace E_Commerce.Repository.Migrations
                     b.ToTable("State");
                 });
 
+            modelBuilder.Entity("E_Commerce.Model.Models.OrderModel.WishList", b =>
+                {
+                    b.Property<int>("WishListID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListID"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("WishListID");
+
+                    b.ToTable("WishList");
+                });
+
             modelBuilder.Entity("E_Commerce.Model.Models.ProductsModel.Brand", b =>
                 {
                     b.Property<int>("BrandId")

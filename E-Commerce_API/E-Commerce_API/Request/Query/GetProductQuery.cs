@@ -4,7 +4,7 @@ using MediatR;
 
 namespace E_Commerce_API.Request.Query
 {
-    public class GetProductQuery: IRequest<AddProductCommand>
+    public class GetProductQuery: IRequest<ProductDetailsQuery>
     {
         public int ProductID { get; set; }
     }

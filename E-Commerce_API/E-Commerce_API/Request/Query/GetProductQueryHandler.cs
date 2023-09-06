@@ -5,24 +5,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_API.Request.Query
 {
-    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, AddProductCommand>
+    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ProductDetailsQuery>
     {
         private readonly E_Commerce_DbContext _context;
         public GetProductQueryHandler(E_Commerce_DbContext context)
         {
             _context = context;
         }
-        public async Task<AddProductCommand> Handle(GetProductQuery query, CancellationToken cancellationToken)
+        public async Task<ProductDetailsQuery> Handle(GetProductQuery query, CancellationToken cancellationToken)
         {
-            var product = await _context.Product.Where(p => p.Id == query.ProductID)
-                .Select(p => new AddProductCommand
+            var product = await _context.Product
+                .Include(p=>p.Brand)
+                .Include(p=>p.Category)
+                .Where(p => p.Id == query.ProductID)
+                .Select(p => new ProductDetailsQuery
                 {
                     ProductId = p.Id,
                     Name = p.Name,
                     Weight = p.Weight,
                     Stock = p.Stock,
-                    BrandId = p.BrandId,
-                    CategoryId = p.CategoryId,
+                    BrandName  = p.Brand!.Name,
+                    CategoryName= p.Category!.Name,
                     UnitPrice = p.UnitPrice
                 }).FirstOrDefaultAsync(cancellationToken);
 
