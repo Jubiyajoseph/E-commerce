@@ -1,4 +1,5 @@
 ﻿using E_Commerce_API.Request.Command;
+using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,20 @@ namespace E_Commerce_API.Controllers
         public async Task<ActionResult<bool>> AddWishlist([FromBody] AddWishListCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet]
+
+        public async Task<ActionResult<WishListDetailsQuery>> GetWishList(int userId)
+        {
+            var query = new GetWishListQuery { UserId = userId };
+            var product = await _mediator.Send(query);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
 
     }

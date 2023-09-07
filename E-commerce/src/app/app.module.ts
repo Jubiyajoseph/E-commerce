@@ -15,6 +15,7 @@ import { AddToWishlistComponent } from './add-to-wishlist/add-to-wishlist.compon
 import { AddressComponent } from './address/address.component';
 import { OrderNowComponent } from './order-now/order-now.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
+import { WishlistProductDetailsComponent } from './wishlist-product-details/wishlist-product-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     AddToWishlistComponent,
     AddressComponent,
     OrderNowComponent,
-    OrdersListComponent
+    OrdersListComponent,
+    WishlistProductDetailsComponent
   ],
   imports: [
     BrowserModule,

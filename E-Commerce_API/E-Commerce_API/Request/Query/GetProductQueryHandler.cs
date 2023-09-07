@@ -1,5 +1,4 @@
 ﻿using E_Commerce.Repository.Context;
-using E_Commerce_API.Request.Command;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

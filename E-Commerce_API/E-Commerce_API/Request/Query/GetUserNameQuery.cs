@@ -3,7 +3,7 @@ using MediatR;
 
 namespace E_Commerce_API.Request.Query
 {
-    public class GetUserQuery: IRequest<GetUserIDQuery>
+    public class GetUserNameQuery: IRequest<GetUserIDQuery>
     {
         public string? Name { get; set; }
     }

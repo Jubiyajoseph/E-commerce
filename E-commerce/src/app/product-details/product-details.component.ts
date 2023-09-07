@@ -66,7 +66,6 @@ export class ProductDetailsComponent implements OnInit {
       }))
   }
     
-  
   buyNow(){
     this.router.navigate([`./order-now`]);
   }
