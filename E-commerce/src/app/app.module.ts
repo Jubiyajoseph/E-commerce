@@ -13,6 +13,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { AddToWishlistComponent } from './add-to-wishlist/add-to-wishlist.component';
 import { AddressComponent } from './address/address.component';
+import { OrderNowComponent } from './order-now/order-now.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AddressComponent } from './address/address.component';
     ProductDetailsComponent,
     AddToCartComponent,
     AddToWishlistComponent,
-    AddressComponent
+    AddressComponent,
+    OrderNowComponent,
+    OrdersListComponent
   ],
   imports: [
     BrowserModule,

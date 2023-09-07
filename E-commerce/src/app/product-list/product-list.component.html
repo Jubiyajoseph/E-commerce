@@ -16,14 +16,17 @@
                     <td id="td">{{product.name}}</td>
                 </tr>
             </table>
-        </div>       
+        </div>  
     </div>
 </form>
-<form>
     <div id="div" class="pagination"> 
-        <button id="button" (click)="PreviousPage()"> Previous </button> 
-        <button id="button" (click)="NextPage()">Next </button>
+        <button id="button" (click)="previousPage()"> Previous </button> 
+        <button id="button" (click)="nextPage()">Next </button>
     </div>
-</form> 
+<div>
+    <button id="button" (click)="viewCart()"> View Cart </button>
+    <button id="button" (click)="viewWishList()"> My WishList </button> 
+    <button id="button" (click)="viewOrders()"> My Orders </button>   
+</div>
 
 
