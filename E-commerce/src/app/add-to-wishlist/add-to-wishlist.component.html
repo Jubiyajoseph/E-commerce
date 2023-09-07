@@ -1,6 +1,5 @@
-<p>add-to-wishlist works!</p>
-<div id="div"><!-- place *ngFor here to display product details from wishList table-->
-    <label>
-      <p id="p"> product Name:</p>
-      
-    </label>   
+
+<h2>Your WishList</h2>
+<div id="div"  *ngFor="let item of productDetails">
+ <p id="p" (click)="getWishlistProductDetails(item.productId)"> {{item.productName}}</p>
+</div>

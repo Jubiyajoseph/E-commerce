@@ -34,4 +34,7 @@ export class ProductService {
     return this.http.post<any>(`${this.baseUrl}/api/WishList`,wishlist)
   }
 
+  getWishlist(id:number):Observable<any>{
+  return this.http.get<any>(`${this.baseUrl}/api/WishList?userId=${id}`)
+}
 }

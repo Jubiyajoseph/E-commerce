@@ -38,7 +38,7 @@ namespace E_Commerce_API.Controllers
 
         public async Task<ActionResult<AddUserCommand>> GetUserId(string name)
         {
-            var query = new GetUserQuery { Name = name };
+            var query = new GetUserNameQuery { Name = name };
             var userId = await _mediator.Send(query);
 
             if (userId == null)

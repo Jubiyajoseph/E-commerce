@@ -71,11 +71,9 @@ export class AddressComponent implements OnInit{
     this.newAddress.isDeleted=false;
     this.loginService.username$.subscribe((data)=>{
       this.username=data;
-      console.log(this.username);
       this.addressService.getUserId(this.username).subscribe((data)=>
       {
         this.newAddress.userId=data.userId
-        console.log(this.newAddress.userId)
         this.addressService.addAddress(this.newAddress).subscribe( {
           next: () => { console.log("Address added sucessfully") },
           error: () => { alert('ERROR! Address not inserted'); }

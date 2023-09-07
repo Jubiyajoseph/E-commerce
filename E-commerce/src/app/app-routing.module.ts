@@ -9,6 +9,7 @@ import { AddToWishlistComponent } from './add-to-wishlist/add-to-wishlist.compon
 import { AddressComponent } from './address/address.component';
 import { OrderNowComponent } from './order-now/order-now.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
+import { WishlistProductDetailsComponent } from './wishlist-product-details/wishlist-product-details.component';
 
 const routes: Routes = [
   { path: '',component: LoginComponent},
@@ -20,14 +21,18 @@ const routes: Routes = [
     children: [
       { path: '', component: ProductListComponent },
       { path: ':id/product-details', component: ProductDetailsComponent },
-    ],
+    ]
   },
 
   { path: 'product-details', component: ProductDetailsComponent},
   
   { path: 'add-to-cart', component: AddToCartComponent },
 
-  { path: 'wishlist', component: AddToWishlistComponent },
+  { path: 'wishlist', 
+  children:[
+    {path:'',component: AddToWishlistComponent },
+    { path: ':id/wishlist-product-details', component: WishlistProductDetailsComponent },
+  ]},
 
   { path: 'add-user-address', component: AddressComponent },
 

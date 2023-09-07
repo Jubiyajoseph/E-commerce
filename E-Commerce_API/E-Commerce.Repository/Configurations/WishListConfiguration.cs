@@ -13,8 +13,8 @@ namespace E_Commerce.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<WishList> builder)
         {
-            builder.HasKey(x => x.WishListID);
-            builder.Property(x=>x.WishListID).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.WishListId);
+            builder.Property(x=>x.WishListId).ValueGeneratedOnAdd();
             
             builder.Property(x=>x.UserID).IsRequired();
 

@@ -4,3 +4,4 @@ export interface Iwishlist {
     productID:number;
     isDeleted:boolean;
 }
+

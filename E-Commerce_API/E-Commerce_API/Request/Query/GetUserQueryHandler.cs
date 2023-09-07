@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_API.Request.Query
 {
-    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, GetUserIDQuery>
+    public class GetUserQueryHandler : IRequestHandler<GetUserNameQuery, GetUserIDQuery>
     {
         private readonly E_Commerce_DbContext _context;
         public GetUserQueryHandler(E_Commerce_DbContext context)
@@ -13,7 +13,7 @@ namespace E_Commerce_API.Request.Query
             _context = context;
         }       
 
-        public async Task<GetUserIDQuery> Handle(GetUserQuery query, CancellationToken cancellationToken)
+        public async Task<GetUserIDQuery> Handle(GetUserNameQuery query, CancellationToken cancellationToken)
         {
             var userId = await _context.User.Where(u => u.Name == query.Name)
                 .Select(u => new GetUserIDQuery

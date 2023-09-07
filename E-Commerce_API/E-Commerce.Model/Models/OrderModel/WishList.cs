@@ -1,4 +1,6 @@
-﻿using System;
+﻿using E_Commerce.Model.Models.ProductsModel;
+using E_Commerce.Model.Models.UserModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +10,16 @@ namespace E_Commerce.Model.Models.OrderModel
 {
     public class WishList
     {
-          public int WishListID { get; }
+          public int WishListId { get; }
           public int UserID { get; private set; }
+          public User? User { get; set; }
           public int ProductID { get; private set; }
+          public Product? Product { get;  set; }    
           public bool IsDeleted { get; private set; }
 
-        private WishList() { }
         public WishList(int wishListId, int userID, int productID, bool isDeleted)
         {
-            WishListID = wishListId;
+            WishListId = wishListId;
             UserID = userID;
             ProductID = productID;
             IsDeleted = isDeleted;
