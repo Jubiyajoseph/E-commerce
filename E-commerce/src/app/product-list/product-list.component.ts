@@ -68,7 +68,16 @@ export class ProductListComponent implements OnInit {
   getDetails(product:IProduct){
     this.router.navigate([`./${product.id}/product-details`], {
       relativeTo: this.activatedRoute
-    });
-   
+    });   
+  }
+
+  viewCart(){
+    this.router.navigate(['./add-to-cart']);
+  }
+  viewWishList(){
+    this.router.navigate(['./wishlist']);
+  }
+  viewOrders(){
+    this.router.navigate([`./orders-list`]);
   }
 }

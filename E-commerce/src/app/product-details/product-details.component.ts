@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { IProductDetails } from '../iproduct-details';
 import { Iwishlist } from '../iwishlist';
+import { AddressService } from '../address/address.service';
+import { LoginService } from '../login/Login.service';
 
 @Component({
   selector: 'app-product-details',
@@ -25,11 +27,16 @@ export class ProductDetailsComponent implements OnInit {
     productID: 0,
     isDeleted: false
   }
+ 
+ username!:string;
+
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private addressService:AddressService,
+    private loginService:LoginService
   ) {}
 
   ngOnInit(): void {
@@ -40,19 +47,28 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   toAddToCart() {
-    this.router.navigate(['./add-to-cart']);
+     //api call for add to cart
   }
 
   toAddToWishlist() {
 
     const id:number= this.route.snapshot.params['id'];
     this.wishlist.productID=id;
-    this.wishlist.userID=1;
     this.wishlist.isDeleted=false;
-    this.productService.addWishList(this.wishlist).subscribe({   
-    //next:()=> {this.router.navigate(['./add-to-wishlist'])} 
-    });
-
+    this.loginService.username$.subscribe((data=>
+      {
+       this.username=data;
+       this.addressService.getUserId(this.username).subscribe((data=>
+        {
+          this.wishlist.userID= data.userId;
+          this.productService.addWishList(this.wishlist).subscribe();
+        }))
+      }))
+  }
     
+  
+  buyNow(){
+    this.router.navigate([`./order-now`]);
   }
 }
+

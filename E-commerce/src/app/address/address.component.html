@@ -1,46 +1,46 @@
-<form [formGroup]="addressForm" (ngSubmit)="onClickAddress()">
 
-    <label>Enter your address:</label>
-    <input type="text" formControlName="address">
-    <br>
+<form id="form" [formGroup]="addressForm" (ngSubmit)="onClickAddress()">
+  <label>Enter your address:&nbsp;</label>
+  <input type="text" formControlName="address">
+  <br><br>
 
-    <label>City:</label>
-    <select formControlName="city" >
-      <option value="">Select a city</option>
-      <option *ngFor="let city of cities" [value]="city.cityId">{{ city.name }}</option>
-    </select>
+  <label>City:&nbsp;&nbsp;</label>
+  <select formControlName="city">
+    <option value="">Select a city</option>
+    <option *ngFor="let city of cities" [value]="city.cityId">{{ city.name }}</option>
+  </select>
 
-    <br>
-    <label>State:</label>
-    <select formControlName="state" >
-      <option value="">Select a state</option>
-      <option *ngFor="let state of states" [value]="state.stateId">{{ state.name }}</option>
-    </select>
+  <br><br>
+  <label>State:</label>
+  <select formControlName="state">
+    <option value="">Select a state</option>
+    <option *ngFor="let state of states" [value]="state.stateId">{{ state.name }}</option>
+  </select>
 
-    <br>
-    <label>Country:</label>
-    <select formControlName="country" >
-      <option value="">Select a country</option>
-      <option *ngFor="let country of countries" [value]="country.countryId">{{ country.name }}</option>
-    </select>
-    <br>
+  <br><br>
+  <label>Country:</label>
+  <select formControlName="country">
+    <option value="">Select a country</option>
+    <option *ngFor="let country of countries" [value]="country.countryId">{{ country.name }}</option>
+  </select>
+  <br><br>
 
-    <button type="submit" (click)="showErrors= true">Add Address</button>
+  <button id="button" type="submit" (click)="showErrors= true">Add Address</button>
 </form>
 
 
 <div *ngIf="showErrors && addressForm?.get('address')?.errors?.['required']">
-    First name is required
+  First name is required
 </div>
 
 <div *ngIf="showErrors && addressForm?.get('city')?.errors?.['required']">
-    City is required
+  City is required
 </div>
 
 <div *ngIf="showErrors && addressForm?.get('state')?.errors?.['required']">
-    State is required
+  State is required
 </div>
 
 <div *ngIf="showErrors && addressForm?.get('country')?.errors?.['required']">
-    Country is required
+  Country is required
 </div>
