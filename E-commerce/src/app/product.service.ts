@@ -4,6 +4,7 @@ import { IProduct } from './iproduct';
 import { Observable } from 'rxjs';
 import { IProductDetails } from './iproduct-details';
 import { Iwishlist } from './iwishlist';
+import { ICartlist } from './icartlist';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,10 @@ export class ProductService {
 
   getWishlist(id:number):Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/api/WishList?userId=${id}`)
-}
+ }
+ 
+  addToCart(cartList:ICartlist):Observable<any>
+  {
+    return this.http.post<any>(`${this.baseUrl}/api/Cart`,cartList)
+  }
 }

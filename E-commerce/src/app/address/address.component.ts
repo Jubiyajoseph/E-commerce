@@ -46,8 +46,6 @@ export class AddressComponent implements OnInit{
       state: new FormControl(null,[Validators.required]),
       country: new FormControl(null,[Validators.required])
     })
-
-    
   }
 
 

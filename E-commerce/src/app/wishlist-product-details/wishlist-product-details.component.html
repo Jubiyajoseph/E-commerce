@@ -7,7 +7,14 @@
         <p id ="p">Category : {{productDetails.categoryName}}</p>
         <p id ="p">Price : Rs {{ productDetails.unitPrice}} </p>
 
-        <button id="button" (click)="toAddToCart()">Add To Cart</button>
+        <form  id="form" [formGroup]="quantityForm"><!--continue here-->
+            <button id="button" (click)="showQuantity=true">Add To Cart</button>
+            <div *ngIf="showQuantity">
+                <label>Quantity:</label>
+                <input type="number" formControlName="quantity">
+                <button  id="button" (click)="toAddToCart()">Add</button>
+            </div>
+        </form>
         <button id="button" (click)="buyNow()">Buy Now</button>
     </div>
 </div>
