@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Repository.Migrations
 {
     [DbContext(typeof(E_Commerce_DbContext))]
-    [Migration("20230906140525_addedordertables")]
-    partial class addedordertables
+    [Migration("20230907132815_ordertablescreated")]
+    partial class ordertablescreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -127,7 +127,7 @@ namespace E_Commerce.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -226,9 +226,10 @@ namespace E_Commerce.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderStatusId"), 1L, 1);
 
-                    b.Property<int>("Status")
+                    b.Property<string>("Status")
+                        .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("OrderStatusId");
 
@@ -237,11 +238,11 @@ namespace E_Commerce.Repository.Migrations
 
             modelBuilder.Entity("E_Commerce.Model.Models.OrderModel.WishList", b =>
                 {
-                    b.Property<int>("WishListID")
+                    b.Property<int>("WishListId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListId"), 1L, 1);
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -254,7 +255,11 @@ namespace E_Commerce.Repository.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("WishListID");
+                    b.HasKey("WishListId");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("WishList");
                 });
@@ -414,9 +419,7 @@ namespace E_Commerce.Repository.Migrations
                 {
                     b.HasOne("E_Commerce.Model.Models.OrderModel.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("E_Commerce.Model.Models.ProductsModel.Product", "Product")
                         .WithMany()
@@ -489,6 +492,25 @@ namespace E_Commerce.Repository.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("E_Commerce.Model.Models.OrderModel.WishList", b =>
+                {
+                    b.HasOne("E_Commerce.Model.Models.ProductsModel.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("E_Commerce.Model.Models.UserModel.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("E_Commerce.Model.Models.ProductsModel.Product", b =>

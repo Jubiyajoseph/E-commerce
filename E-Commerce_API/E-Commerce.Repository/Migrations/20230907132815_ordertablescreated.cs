@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Repository.Migrations
 {
-    public partial class addedordertables : Migration
+    public partial class ordertablescreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace E_Commerce.Repository.Migrations
                 {
                     OrderStatusId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<int>(type: "int", maxLength: 30, nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +73,7 @@ namespace E_Commerce.Repository.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,8 +82,7 @@ namespace E_Commerce.Repository.Migrations
                         name: "FK_Cart_Order_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Order",
-                        principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "OrderId");
                     table.ForeignKey(
                         name: "FK_Cart_Product_ProductId",
                         column: x => x.ProductId,
