@@ -16,7 +16,7 @@ namespace E_Commerce_API.Controllers
     {
         private readonly IMediator _mediator;
         private E_Commerce_DbContext _context;
-        private const int productPages = 5;
+        private const int productPages = 10;
         public ProductController(E_Commerce_DbContext context, IMediator mediator)
         {
             _context = context;
