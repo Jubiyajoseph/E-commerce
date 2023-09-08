@@ -27,7 +27,10 @@ namespace E_Commerce.Repository.Context
         public DbSet<Category> Category { get; set; } = null!;
         public DbSet<Product> Product { get; set; } = null!;
         public DbSet<WishList> WishList { get; set; } = null!;
-
+        public DbSet<OrderStatus> OrderStatus { get; set; } = null!;
+        public DbSet<Order> Order { get; set; } = null!;
+        public DbSet<OrderDetail> OrderDetail { get; set; } = null!;
+        public DbSet<Cart> Cart { get; set; } = null!;
 
 
 
