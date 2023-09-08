@@ -12,7 +12,7 @@ namespace E_Commerce.Model.Models.OrderModel
         public int ProductId { get; private set; }
         public Product? Product { get; set; }
         public int Quantity { get; private set; }
-        public int OrderId { get; private set; }
+        public int? OrderId { get; private set; }
         public Order? Order { get; set; }
 
         public Cart(int userId, int productId, int quantity)
