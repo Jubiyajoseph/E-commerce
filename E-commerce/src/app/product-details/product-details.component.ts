@@ -5,6 +5,8 @@ import { IProductDetails } from '../iproduct-details';
 import { Iwishlist } from '../iwishlist';
 import { AddressService } from '../address/address.service';
 import { LoginService } from '../login/Login.service';
+import { ICartlist } from '../icartlist';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
@@ -12,6 +14,8 @@ import { LoginService } from '../login/Login.service';
   styleUrls: ['./product-details.component.sass'],
 })
 export class ProductDetailsComponent implements OnInit {
+
+  showQuantity=false;
   public productDetails: IProductDetails={
     id: 0,
     name: '',
@@ -27,16 +31,22 @@ export class ProductDetailsComponent implements OnInit {
     productID: 0,
     isDeleted: false
   }
+  public cartList:ICartlist={
+    userId:0,
+    productId:0,
+    quantity:0
+  }
  
  username!:string;
-
+ quantityForm!:FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
     private addressService:AddressService,
-    private loginService:LoginService
+    private loginService:LoginService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -44,10 +54,39 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductById(id).subscribe((data) => {
       this.productDetails = data;    
     });
+
+    this.quantityForm=this.formBuilder.group({
+      quantity:[' ',Validators.required]
+    })
   }
 
   toAddToCart() {
-     //api call for add to cart
+
+    const id:number= this.route.snapshot.params['id'];
+    this.cartList.productId=id;
+    this.loginService.username$.subscribe((data=>
+      {
+       this.username=data;
+       this.addressService.getUserId(this.username).subscribe((data=>
+        {
+          this.cartList.userId= data.userId;
+          this.cartList.quantity=this.quantityForm.get('quantity')?.value;
+          console.log(this.cartList);
+          this.productService.addToCart(this.cartList).subscribe({
+
+            next:(response)=>
+            {
+              if(response===true){
+                alert('Added To Cart')
+              }
+              else{
+                alert('Already added or Check stock')
+              }
+            }
+          });
+        }))
+      }))
+
   }
 
   toAddToWishlist() {
@@ -62,7 +101,15 @@ export class ProductDetailsComponent implements OnInit {
         {
           this.wishlist.userID= data.userId;
           this.productService.addWishList(this.wishlist).subscribe({
-            next:()=>{alert('Added To WishList')}
+            next:(response)=>
+            {
+              if(response===true){
+                alert('Added To WishList')
+              }
+              else{
+                alert('Already added to Wishlist')
+              }
+            }
           });
         }))
       }))

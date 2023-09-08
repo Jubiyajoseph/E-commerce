@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { IProductDetails } from '../iproduct-details';
+import { ICartlist } from '../icartlist';
+import { LoginService } from '../login/Login.service';
+import { AddressService } from '../address/address.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-wishlist-product-details',
@@ -19,7 +23,21 @@ export class WishlistProductDetailsComponent implements OnInit{
     categoryName: '',
     unitPrice: 0
   }
-  constructor(private router:Router,private productService:ProductService,private route:ActivatedRoute){
+  public cartList:ICartlist={
+    userId:0,
+    productId:0,
+    quantity:0
+  }
+  username!:string;
+  quantityForm!:FormGroup;
+  showQuantity=false;
+  
+  constructor(private router:Router,
+    private productService:ProductService,
+    private route:ActivatedRoute,
+    private addressService:AddressService,
+    private formBuilder: FormBuilder,
+    private loginService:LoginService){
 
   }
 
@@ -28,10 +46,39 @@ export class WishlistProductDetailsComponent implements OnInit{
     this.productService.getProductById(id).subscribe((data) => {
       this.productDetails = data;    
     });
+
+    
+    this.quantityForm=this.formBuilder.group({
+      quantity:[' ',Validators.required]
+    })
   }
 
   toAddToCart() {
-    //api call for add to cart
+  
+    const id:number= this.route.snapshot.params['id'];
+    this.cartList.productId=id;
+    this.loginService.username$.subscribe((data=>
+      {
+       this.username=data;
+       this.addressService.getUserId(this.username).subscribe((data=>
+        {
+          this.cartList.userId= data.userId;
+          this.cartList.quantity=this.quantityForm.get('quantity')?.value;
+          console.log(this.cartList);
+          this.productService.addToCart(this.cartList).subscribe({
+
+            next:(response)=>
+            {
+              if(response===true){
+                alert('Added To Cart')
+              }
+              else{
+                alert('Already added or Check stock')
+              }
+            }
+          });
+        }))
+      }))
  }
   
  buyNow(){
