@@ -61,7 +61,9 @@ export class ProductDetailsComponent implements OnInit {
        this.addressService.getUserId(this.username).subscribe((data=>
         {
           this.wishlist.userID= data.userId;
-          this.productService.addWishList(this.wishlist).subscribe();
+          this.productService.addWishList(this.wishlist).subscribe({
+            next:()=>{alert('Added To WishList')}
+          });
         }))
       }))
   }

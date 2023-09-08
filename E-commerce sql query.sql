@@ -1,8 +1,10 @@
-select * from [User]
-select * from Address
-select * from Brand
-select * from Category
-select * from WishList
+SELECT * FROM [User]
+SELECT * FROM Product
+SELECT * FROM Brand
+SELECT * FROM Category
+SELECT * FROM WishList
+drop table OrderStatus
+SELECT * FROM Cart
 
 --delete from WishList where WishListID in(3,4,5,6,7,8)
 

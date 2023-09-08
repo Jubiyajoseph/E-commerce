@@ -24,6 +24,7 @@ namespace E_Commerce.Repository.Configurations
                 .HasForeignKey(x => x.ProductId);
 
             builder.Property(x => x.Quantity).IsRequired();
+            builder.Property(x => x.OrderId).IsRequired(false);
         }
     }
 }

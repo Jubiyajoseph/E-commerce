@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { CartComponent } from './cart/cart.component';
 import { AddToWishlistComponent } from './add-to-wishlist/add-to-wishlist.component';
 import { AddressComponent } from './address/address.component';
 import { OrderNowComponent } from './order-now/order-now.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
 
   { path: 'product-details', component: ProductDetailsComponent},
   
-  { path: 'add-to-cart', component: AddToCartComponent },
+  { path: 'cart', component: CartComponent },
 
   { path: 'wishlist', 
   children:[

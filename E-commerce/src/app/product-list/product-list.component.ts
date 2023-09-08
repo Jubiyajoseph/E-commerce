@@ -72,7 +72,7 @@ export class ProductListComponent implements OnInit {
   }
 
   viewCart(){
-    this.router.navigate(['./add-to-cart']);
+    this.router.navigate(['./cart']);
   }
   viewWishList(){
     this.router.navigate(['./wishlist']);

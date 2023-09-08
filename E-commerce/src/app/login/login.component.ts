@@ -29,12 +29,15 @@ export class LoginComponent implements OnInit {
     const name = this.loginForm.get('userName')?.value!;
     const password = this.loginForm.get('password')?.value!;
 
-    this.loginService.Login(name, password).subscribe({
-      next: () => { this.router.navigate(['./product-list']); },
-      error: () => { alert('Insert valid Username or Password'); }
-    });
-
-    
+    this.loginService.Login(name,password).subscribe({
+      next: (response)=> 
+      {
+        if(response===true){
+          this.router.navigate(['./product-list']);
+        }
+        else{
+          alert('Insert valid Username or Password');
+        }},
+    })
   }
-
 }

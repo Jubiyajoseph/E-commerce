@@ -23,5 +23,8 @@ namespace E_Commerce_API.Controllers
         {
             return Ok(await _mediator.Send(command));
         }
+
+        //[HttpGet]
+        //public 
     }
 }

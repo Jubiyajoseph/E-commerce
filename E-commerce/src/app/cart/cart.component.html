@@ -1,0 +1,17 @@
+<h2>&nbsp;ProductDetails</h2>
+<div id="div"><!-- place *ngFor here to display product details from cart table-->
+    <label>
+      <p id="p"> product Name:</p>
+      <p id="p">Quantity:</p>
+      <p id="p">Price:</p>
+    </label>   
+</div>
+<div  id="div">
+    <br>
+    <label id="label">Deliver to this address:&nbsp;&nbsp;</label>
+    <select>
+      <option value="">Select Your Address</option>
+    </select>
+    <button id="button">Place Order</button>
+    <button id="button" (click)="showAddress()">Add New Address</button>
+  </div>
