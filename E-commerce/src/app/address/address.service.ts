@@ -34,4 +34,8 @@ export class AddressService {
   getUserId(userName: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/api/User?name=${userName}`)
   }
+
+  updateAddress(address: IAddress,id:number): Observable<any>{
+    return this.http.put(`${this.baseUrl}/api/Address/${id}`,address);
+  }
 }

@@ -16,6 +16,8 @@ import { AddressComponent } from './address/address.component';
 import { OrderNowComponent } from './order-now/order-now.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 import { WishlistProductDetailsComponent } from './wishlist-product-details/wishlist-product-details.component';
+import { UseraddressComponent } from './useraddress/useraddress.component';
+import { UpdateaddressComponent } from './updateaddress/updateaddress.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { WishlistProductDetailsComponent } from './wishlist-product-details/wish
     AddressComponent,
     OrderNowComponent,
     OrdersListComponent,
-    WishlistProductDetailsComponent
+    WishlistProductDetailsComponent,
+    UseraddressComponent,
+    UpdateaddressComponent
   ],
   imports: [
     BrowserModule,

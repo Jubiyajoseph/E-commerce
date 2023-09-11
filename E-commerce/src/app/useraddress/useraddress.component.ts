@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteReuseStrategy, Router } from '@angular/router';
 import { LoginService } from '../login/Login.service';
 import { AddressService } from '../address/address.service';
 import { OrderService } from '../order.service';
-import { IAddress } from '../address/IAddress';
 import { IUserAddress } from '../address/IUserAddress';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-order-now',
-  templateUrl: './order-now.component.html',
-  styleUrls: ['./order-now.component.sass']
+  selector: 'app-useraddress',
+  templateUrl: './useraddress.component.html',
+  styleUrls: ['./useraddress.component.sass']
 })
-export class OrderNowComponent implements OnInit{
+export class UseraddressComponent implements OnInit{
 
   public username!:string;
   userId!:number;
-
-
   public addressDetails:IUserAddress[]=[];
-
-  constructor(private router:Router,private loginService:LoginService,private addressService:AddressService,private orderService:OrderService ){
+  
+  constructor(private router:Router,
+    private loginService:LoginService,
+    private addressService:AddressService,
+    private activatedRoute:ActivatedRoute,
+    private orderService:OrderService ) {  
     
   }
   ngOnInit(): void {
@@ -35,7 +36,14 @@ export class OrderNowComponent implements OnInit{
         }))
       }))
   }
+
   showAddress(){
     this.router.navigate([`./add-user-address`]);
+  }
+  
+  editAddress(id:number){
+    this.router.navigate([`./${id}/update-address`], {
+      relativeTo: this.activatedRoute
+    });   
   }
 }

@@ -80,4 +80,8 @@ export class ProductListComponent implements OnInit {
   viewOrders(){
     this.router.navigate([`./orders-list`]);
   }
+  showUserAddress(){
+    this.router.navigate(['./user-address'])
+  }
+ 
 }

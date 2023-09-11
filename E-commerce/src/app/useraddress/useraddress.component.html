@@ -1,0 +1,12 @@
+<h2>Your added addresses</h2>
+
+<h3>Select an address to edit</h3>
+<div id="div" *ngFor="let address of addressDetails">
+    <p id="p" (click)="editAddress(address.addressId)"> 
+        {{address.residentialAddress}},
+        {{address.cityName}},
+        {{address.stateName}},
+        {{address.countryName}}
+    </p>
+</div>
+<button id="button" (click)="showAddress()">Add New Address</button>
