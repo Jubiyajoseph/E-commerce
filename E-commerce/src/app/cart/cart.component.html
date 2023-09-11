@@ -1,10 +1,12 @@
 <h2>&nbsp;ProductDetails</h2>
-<div id="div"><!-- place *ngFor here to display product details from cart table-->
+<div><!-- place *ngFor here to display product details from cart table-->
+  <div id="div" *ngFor="let item of cartDetails">
     <label>
-      <p id="p"> product Name:</p>
-      <p id="p">Quantity:display quantity in cart table</p>
-      <p id="p">Price:</p>
+      <p id="p"> product Name:{{item.productName}}</p>
+      <p id="p">Quantity:{{item.quantity}}</p>
+      <p id="p">Price:Rs.{{item.unitPrice * item.quantity}}</p>
     </label>   
+  </div>
 </div>
 <div  id="div">
     <br>

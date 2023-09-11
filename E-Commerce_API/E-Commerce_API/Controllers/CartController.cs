@@ -1,4 +1,5 @@
 ﻿using E_Commerce_API.Request.Command;
+using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,16 @@ namespace E_Commerce_API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
-        //[HttpGet]
-        //public 
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<CartDetailsQuery>> GetCart(int userId)
+        {
+            var query = new GetUserIDQuery { UserId = userId };
+            var cart = await _mediator.Send(query);
+            if (cart == null)
+            {
+                return NotFound();
+            }
+            return Ok(cart);
+        }
     }
 }

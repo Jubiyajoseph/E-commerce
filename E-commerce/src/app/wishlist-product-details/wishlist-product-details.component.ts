@@ -6,6 +6,8 @@ import { ICartlist } from '../icartlist';
 import { LoginService } from '../login/Login.service';
 import { AddressService } from '../address/address.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Iwishlist } from '../iwishlist';
+import { IupdateWishlist } from '../iupdate-wishlist';
 
 @Component({
   selector: 'app-wishlist-product-details',
@@ -27,6 +29,11 @@ export class WishlistProductDetailsComponent implements OnInit{
     userId:0,
     productId:0,
     quantity:0
+  }
+
+  public updateQuery:IupdateWishlist={
+    userID: 0,
+    productID: 0,
   }
   username!:string;
   quantityForm!:FormGroup;
@@ -57,12 +64,14 @@ export class WishlistProductDetailsComponent implements OnInit{
   
     const id:number= this.route.snapshot.params['id'];
     this.cartList.productId=id;
+    this.updateQuery.productID=id;
     this.loginService.username$.subscribe((data=>
       {
        this.username=data;
        this.addressService.getUserId(this.username).subscribe((data=>
         {
-          this.cartList.userId= data.userId;
+          this.cartList.userId = data.userId;
+          this.updateQuery.userID = data.userId;
           this.cartList.quantity=this.quantityForm.get('quantity')?.value;
           console.log(this.cartList);
           this.productService.addToCart(this.cartList).subscribe({
@@ -71,6 +80,7 @@ export class WishlistProductDetailsComponent implements OnInit{
             {
               if(response===true){
                 alert('Added To Cart')
+                this.productService.updateWishList(this.updateQuery).subscribe()
               }
               else{
                 alert('Already added or Check stock')

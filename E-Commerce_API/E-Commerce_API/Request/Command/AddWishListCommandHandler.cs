@@ -17,7 +17,7 @@ namespace E_Commerce_API.Request.Command
         public async Task<bool> Handle(AddWishListCommand command, CancellationToken cancellationToken)
         {
             //only one user & one productid & isdeleted 0 can add to wishlist table
-            bool isAlreadyInWishList= await _context.WishList.AnyAsync(w=>w.UserID==command.UserID && w.ProductID==command.ProductID && w.IsDeleted==false,cancellationToken);
+            bool isAlreadyInWishList= await _context.WishList.AnyAsync(w=>w.UserID==command.UserID && w.ProductID==command.ProductID,cancellationToken);
             if (isAlreadyInWishList)
             {
                 return false;
