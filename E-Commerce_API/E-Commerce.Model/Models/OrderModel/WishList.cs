@@ -17,6 +17,13 @@ namespace E_Commerce.Model.Models.OrderModel
           public Product? Product { get;  set; }    
           public bool IsDeleted { get; private set; }
 
+        public WishList(int userID, int productID, bool isDeleted)
+        {
+            UserID = userID;
+            ProductID = productID;
+            IsDeleted = isDeleted;
+
+        }
         public WishList(int wishListId, int userID, int productID, bool isDeleted)
         {
             WishListId = wishListId;

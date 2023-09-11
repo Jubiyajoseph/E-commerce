@@ -36,5 +36,12 @@ namespace E_Commerce_API.Controllers
             return Ok(product);
         }
 
+        [HttpPut]
+
+        public async Task<bool> UpdateWishlist([FromBody] UpdateWishlistCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
     }
 }

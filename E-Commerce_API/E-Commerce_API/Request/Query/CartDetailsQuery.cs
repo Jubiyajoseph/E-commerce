@@ -2,12 +2,12 @@
 {
     public class CartDetailsQuery
     {
-        public int productId { get; set; }
-        public string? productName { get; set; }
-        public decimal unitPrice { get; set; }
-         public decimal weight { get; set; }
-        public int stock {get; set; }
-        public int quantity { get; set; }   
+        public int ProductId { get; set; }
+        public string? ProductName { get; set; }
+        public decimal UnitPrice { get; set; }
+         public decimal Weight { get; set; }
+        public int Stock {get; set; }
+        public int Quantity { get; set; }   
 
     }
 }

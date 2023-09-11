@@ -15,13 +15,7 @@ export class OrderNowComponent implements OnInit{
 
   public username!:string;
   userId!:number;
-  // public addressDetails:IUserAddress ={
-  //   addressId: 0,
-  //   residentialAddress: '',
-  //   cityName: '',
-  //   stateName: '',
-  //   countryName: ''
-  // };
+
 
   public addressDetails:IUserAddress[]=[];
 

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IProductDetails } from './iproduct-details';
 import { Iwishlist } from './iwishlist';
 import { ICartlist } from './icartlist';
+import { IupdateWishlist } from './iupdate-wishlist';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,15 @@ export class ProductService {
   addToCart(cartList:ICartlist):Observable<any>
   {
     return this.http.post<any>(`${this.baseUrl}/api/Cart`,cartList)
+  }
+
+  viewCart(id:number):Observable<any>
+  {
+    return this.http.get<any>(`${this.baseUrl}/api/Cart/${id}`)
+  }
+
+  updateWishList(updateQuery:IupdateWishlist):Observable<void>
+  {
+    return this.http.put<void>(`${this.baseUrl}/api/WishList`,updateQuery)
   }
 }
