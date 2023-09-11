@@ -10,3 +10,4 @@ docker/
 .vscode/
 bin/
 obj/
+/docker
