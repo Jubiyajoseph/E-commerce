@@ -71,7 +71,6 @@ export class ProductDetailsComponent implements OnInit {
         {
           this.cartList.userId= data.userId;
           this.cartList.quantity=this.quantityForm.get('quantity')?.value;
-          console.log(this.cartList);
           this.productService.addToCart(this.cartList).subscribe({
 
             next:(response)=>

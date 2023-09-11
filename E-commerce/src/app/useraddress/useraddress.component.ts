@@ -1,24 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginService } from '../login/Login.service';
 import { AddressService } from '../address/address.service';
 import { OrderService } from '../order.service';
 import { IUserAddress } from '../address/IUserAddress';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-to-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.sass']
+  selector: 'app-useraddress',
+  templateUrl: './useraddress.component.html',
+  styleUrls: ['./useraddress.component.sass']
 })
-export class CartComponent implements OnInit {
+export class UseraddressComponent implements OnInit{
 
-  constructor(private router:Router,private loginService: LoginService,private addressService:AddressService,private orderService:OrderService){
-
-  }
   public username!:string;
   userId!:number;
   public addressDetails:IUserAddress[]=[];
-
+  
+  constructor(private router:Router,
+    private loginService:LoginService,
+    private addressService:AddressService,
+    private activatedRoute:ActivatedRoute,
+    private orderService:OrderService ) {  
+    
+  }
   ngOnInit(): void {
     this.loginService.username$.subscribe((data=>
       {
@@ -32,7 +36,14 @@ export class CartComponent implements OnInit {
         }))
       }))
   }
+
   showAddress(){
     this.router.navigate([`./add-user-address`]);
+  }
+  
+  editAddress(id:number){
+    this.router.navigate([`./${id}/update-address`], {
+      relativeTo: this.activatedRoute
+    });   
   }
 }

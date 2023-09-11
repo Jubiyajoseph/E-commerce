@@ -37,8 +37,7 @@ export class OrderNowComponent implements OnInit{
           this.userId = data.userId;
           this.orderService.getAddress(this.userId).subscribe((data)=>{
             this.addressDetails=data;
-          })
-          
+          })         
         }))
       }))
   }

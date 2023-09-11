@@ -27,19 +27,6 @@ namespace E_Commerce_API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<Address>> GetAddressDetailsByUserId(int userId)
-        //{
-        //    var query = new GetAddressByUserIdQuery { UserId = userId };
-        //    var address = await _mediator.Send(query);
-
-        //    if (address == null)
-        //    {
-        //        return NotFound(); // Return a 404 response if the address is not found for the given user.
-        //    }
-
-        //    return Ok(address);
-        //}
 
         [HttpGet]
         public async Task<ActionResult<List<AddressDetailsQuery>>> GetAddressesByUserId(int userId)
@@ -47,7 +34,7 @@ namespace E_Commerce_API.Controllers
             var query = new GetAddressByUserIdQuery { UserId = userId };
             var addresses = await _mediator.Send(query);
 
-            if (addresses == null /*|| addresses.Count == 0*/)
+            if (addresses == null)
             {
                 return NotFound(); 
             }
@@ -55,6 +42,22 @@ namespace E_Commerce_API.Controllers
             return Ok(addresses);
         }
 
+        [HttpPut("{id}")]
+        public async Task<bool> UpdateAddress(int id, [FromBody] UpdateAddressCommand command)
+        {            
+            // Set the ID from the route parameter
+            command.AddressId = id;
 
+            var result = await _mediator.Send(command);
+
+            if (result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

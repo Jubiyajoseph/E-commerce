@@ -32,5 +32,14 @@ namespace E_Commerce.Model.Models.AddressModel
             IsDeleted = isDeleted;
         }
 
+        public void UpdateAddress(string residentialAddress, int cityId, int stateId, int countryId,int userId)
+        {
+            ResidentialAddress=residentialAddress;
+            CityId = cityId;
+            StateId = stateId;
+            CountryId = countryId;
+            UserId = userId;
+        }
+
     }
 }

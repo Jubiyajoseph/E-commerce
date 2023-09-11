@@ -10,39 +10,53 @@ import { AddressComponent } from './address/address.component';
 import { OrderNowComponent } from './order-now/order-now.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 import { WishlistProductDetailsComponent } from './wishlist-product-details/wishlist-product-details.component';
+import { UseraddressComponent } from './useraddress/useraddress.component';
+import { UpdateaddressComponent } from './updateaddress/updateaddress.component';
 
 const routes: Routes = [
-  { path: '',component: LoginComponent},
+  { path: '', component: LoginComponent },
 
-  { path: 'home', component: HomeComponent,},
+  { path: 'home', component: HomeComponent, },
 
   {
     path: 'product-list',
     children: [
       { path: '', component: ProductListComponent },
-      { path: ':id/product-details', component: ProductDetailsComponent },
+      { path: ':id/product-details', component: ProductDetailsComponent }
     ]
   },
 
-  { path: 'product-details', component: ProductDetailsComponent},
-  
+  { path: 'product-details', component: ProductDetailsComponent },
+
   { path: 'cart', component: CartComponent },
 
-  { path: 'wishlist', 
-  children:[
-    {path:'',component: AddToWishlistComponent },
-    { path: ':id/wishlist-product-details', component: WishlistProductDetailsComponent },
-  ]},
+  {
+    path: 'wishlist',
+    children: [
+      { path: '', component: AddToWishlistComponent },
+      { path: ':id/wishlist-product-details', component: WishlistProductDetailsComponent },
+    ]
+  },
 
   { path: 'add-user-address', component: AddressComponent },
 
   { path: 'order-now', component: OrderNowComponent },
 
-  {path:'orders-list', component:OrdersListComponent}
+  { path: 'orders-list', component: OrdersListComponent },
+
+  { 
+    path: 'user-address',
+    children: [
+      { path: '', component: UseraddressComponent},
+      { path: ':id/update-address', component:UpdateaddressComponent}
+    ]
+    },
+
+  { path: 'update-address', component: UpdateaddressComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
