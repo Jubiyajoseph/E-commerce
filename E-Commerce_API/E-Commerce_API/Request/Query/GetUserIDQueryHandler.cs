@@ -20,12 +20,12 @@ namespace E_Commerce_API.Request.Query
                 .Where(c=>c.UserId == query.UserId) 
                 .Select(c=>new CartDetailsQuery
                 {
-                    productId=c.ProductId,
-                    productName=c.Product!.Name,
-                    unitPrice= c.Product.UnitPrice,
-                    weight= c.Product.Weight,
-                    stock=c.Product.Stock,
-                    quantity=c.Quantity
+                    ProductId=c.ProductId,
+                    ProductName=c.Product!.Name,
+                    UnitPrice= c.Product.UnitPrice,
+                    Weight= c.Product.Weight,
+                    Stock=c.Product.Stock,
+                    Quantity=c.Quantity
                 }).ToListAsync(cancellationToken);
             if(cart == null )
             {

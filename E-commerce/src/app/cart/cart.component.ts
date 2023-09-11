@@ -4,6 +4,8 @@ import { LoginService } from '../login/Login.service';
 import { AddressService } from '../address/address.service';
 import { OrderService } from '../order.service';
 import { IUserAddress } from '../address/IUserAddress';
+import { ProductService } from '../product.service';
+import { Icartdetails } from '../icartdetails';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -12,27 +14,44 @@ import { IUserAddress } from '../address/IUserAddress';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private router:Router,private loginService: LoginService,private addressService:AddressService,private orderService:OrderService){
+  constructor(private router: Router,
+    private productService:ProductService, 
+    private loginService: LoginService, 
+    private addressService: AddressService, 
+    private orderService: OrderService) {
 
   }
-  public username!:string;
-  userId!:number;
-  public addressDetails:IUserAddress[]=[];
+  public userName!: string;
+  userId!: number;
+  public addressDetails: IUserAddress[] = [];
+  public cartDetails:Icartdetails[]=[];
 
   ngOnInit(): void {
-    this.loginService.username$.subscribe((data=>
-      {
-       this.username=data;
-       this.addressService.getUserId(this.username).subscribe((data=>
-        {
-          this.userId = data.userId;
-          this.orderService.getAddress(this.userId).subscribe((data)=>{
-            this.addressDetails=data;
-          })         
-        }))
+    this.loginService.username$.subscribe((data => {
+      this.userName = data;
+      this.addressService.getUserId(this.userName).subscribe((data => {
+        this.userId = data.userId;
+        this.productService.viewCart(this.userId).subscribe((data) => 
+        { this.cartDetails = data; console.log(this.cartDetails) })
+        this.orderService.getAddress(this.userId).subscribe((data) => {
+          this.addressDetails = data;
+        })
       }))
+    }))
   }
-  showAddress(){
+  showAddress() {
     this.router.navigate([`./add-user-address`]);
+  }
+
+  viewCart() {
+    this.loginService.username$.subscribe((data => {
+      this.userName = data;
+      this.addressService.getUserId(this.userName).subscribe((data => {
+        this.userId = data.userId;
+        this.productService.viewCart(this.userId).subscribe((data) => {
+          this.cartDetails = data;
+        })
+      }))
+    }))
   }
 }

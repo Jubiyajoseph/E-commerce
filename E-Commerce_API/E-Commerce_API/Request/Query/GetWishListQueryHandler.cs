@@ -15,7 +15,7 @@ namespace E_Commerce_API.Request.Query
         {
             var product = await _context.WishList
                      .Include(w =>w.Product)
-                     .Where(w=>w.UserID == query.UserId)
+                     .Where(w=>w.UserID == query.UserId && w.IsDeleted == false)
                      .Select(w => new WishListDetailsQuery
                      {  
                          ProductId=w.Product!.Id,                    
