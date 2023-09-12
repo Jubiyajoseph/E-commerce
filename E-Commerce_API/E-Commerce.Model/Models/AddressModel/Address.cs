@@ -15,7 +15,7 @@ namespace E_Commerce.Model.Models.AddressModel
         public Country? Country { get; set; }
         public int UserId { get; private set; } 
         public User? User { get; set; }
-        public bool IsDeleted {get; private set; }
+        public bool IsDeleted { get; private set; }
 
         private Address()
         {
@@ -39,6 +39,11 @@ namespace E_Commerce.Model.Models.AddressModel
             StateId = stateId;
             CountryId = countryId;
             UserId = userId;
+        }
+
+        public void UpdateIsDeleted(bool isDeleted)
+        {
+            IsDeleted = isDeleted;
         }
 
     }
