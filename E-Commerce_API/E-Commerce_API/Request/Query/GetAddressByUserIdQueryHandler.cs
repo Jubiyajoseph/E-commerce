@@ -20,7 +20,7 @@ namespace E_Commerce_API.Request.Query
                 .Include(a=>a.City)
                 .Include(a=>a.State)
                 .Include(a=>a.Country)
-                .Where(a => a.UserId == request.UserId)
+                .Where(a => a.UserId == request.UserId && a.IsDeleted == false)
                 .Select(a => new AddressDetailsQuery
                 {
                     AddressId = a.AddressId,

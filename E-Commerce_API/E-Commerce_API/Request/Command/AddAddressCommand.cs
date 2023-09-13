@@ -11,5 +11,6 @@ namespace E_Commerce_API.Request.Command
         public int CountryId { get; set; }
         public int UserId { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsDefault { get; set; }
     }
 }

@@ -33,7 +33,6 @@ namespace E_Commerce.Repository.Context
         public DbSet<Cart> Cart { get; set; } = null!;
 
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var assemblyName = Assembly.GetExecutingAssembly();

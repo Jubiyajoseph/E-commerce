@@ -1,12 +1,24 @@
-<h2>Your added addresses</h2>
+<p>Default address:-</p>
+{{isNoDefaultAddress}}
+<p *ngIf="!isNoDefaultAddress"> {{defaultAddressDetails.residentialAddress}},{{defaultAddressDetails.cityName}},
+  {{defaultAddressDetails.stateName}},{{defaultAddressDetails.countryName}}</p>
+
+<br>
+<label id="label">Change Default address:&nbsp;</label>
+<select [(ngModel)]="selectedAddressId" (change)="updateDefaultAddress()">
+  <option *ngFor="let address of addressDetails" [value]="address.addressId">
+    {{address.residentialAddress}},{{address.cityName}},{{address.stateName}},{{address.countryName}}</option>
+</select>
+
 
 <h3>Select an address to edit</h3>
 <div id="div" *ngFor="let address of addressDetails">
-    <p id="p" (click)="editAddress(address.addressId)"> 
-        {{address.residentialAddress}},
-        {{address.cityName}},
-        {{address.stateName}},
-        {{address.countryName}}
-    </p>
+  <p id="p" (click)="editAddress(address.addressId)">
+    {{address.residentialAddress}},
+    {{address.cityName}},
+    {{address.stateName}},
+    {{address.countryName}}
+  </p>
+  <button (click)="deleteAddress(address.addressId)">Delete</button>
 </div>
 <button id="button" (click)="showAddress()">Add New Address</button>

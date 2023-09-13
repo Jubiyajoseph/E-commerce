@@ -23,9 +23,7 @@ namespace E_Commerce_API.Request.Command
             }
 
             addressId.UpdateAddress(command.ResidentialAddress!,command.CityId,command.StateId,command.CountryId,command.UserId);
-
             await _context.SaveChangesAsync(cancellationToken);
-
             return true;
         }
     }

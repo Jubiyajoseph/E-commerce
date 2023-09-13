@@ -15,9 +15,9 @@ import { Icartdetails } from '../icartdetails';
 export class CartComponent implements OnInit {
 
   constructor(private router: Router,
-    private productService:ProductService, 
-    private loginService: LoginService, 
-    private addressService: AddressService, 
+    private productService: ProductService,
+    private loginService: LoginService,
+    private addressService: AddressService,
     private orderService: OrderService) {
 
   }
@@ -49,6 +49,7 @@ export class CartComponent implements OnInit {
       }))
     }))
   }
+  
   showAddress() {
     this.router.navigate([`./add-user-address`]);
   }
