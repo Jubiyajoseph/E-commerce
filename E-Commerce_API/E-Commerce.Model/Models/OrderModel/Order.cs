@@ -26,5 +26,17 @@ namespace E_Commerce.Model.Models.OrderModel
             TotalPrice = totalPrice;
             OrderStatusId = orderStatusId;
         }
+
+        public Order(int orderId,int orderstatusId) 
+        {
+            OrderId = orderId;
+            //UserId = userId;
+            OrderStatusId = orderstatusId;
+        }
+
+        public void UpdateOrder(int orderStatusId) 
+        {
+         OrderStatusId= orderStatusId;
+        }
     }
 }

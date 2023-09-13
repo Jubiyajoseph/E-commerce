@@ -1,4 +1,5 @@
 ﻿using E_Commerce_API.Request.Command;
+using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,19 @@ namespace E_Commerce_API.Controllers
         public async Task<ActionResult<bool>> AddOrderDetail([FromBody] AddOrderDetailCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet]
+
+        public async Task<ActionResult<OrderDetailsQuery>> GetOrderDetails(int userId)
+        {
+            var query = new GetOrderDetailQuery { UserId = userId };
+            var orderDetails = await _mediator.Send(query);
+            if (orderDetails == null)
+            {
+                return NotFound();
+            }
+            return Ok(orderDetails);
         }
     }
 }

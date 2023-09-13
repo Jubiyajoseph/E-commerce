@@ -23,5 +23,25 @@ namespace E_Commerce_API.Controllers
         {
             return Ok(await _mediator.Send(command));
         }
+
+        [HttpPost("place-order")]
+         
+        public async Task<bool> PlaceOrder([FromBody] AddPlaceOrderCommand command)
+        {
+            return (await _mediator.Send(command));
+        }
+
+        [HttpPut]
+        public async Task<bool> UpdateStatus([FromBody] UpdateStatusCommand command)
+        {
+            var result = await _mediator.Send(command);
+            if (result)
+            {
+                return true;
+            }
+            return false;
+        }
+
+       
     }
 }

@@ -43,5 +43,12 @@ namespace E_Commerce_API.Controllers
             return await _mediator.Send(command);
         }
 
+
+        [HttpDelete]
+        public async Task<bool> DeleteWishList(int wishListId)
+        {
+            var command = new DeleteWishListCommand { WishListId = wishListId };
+            return await _mediator.Send(command);
+        }
     }
 }

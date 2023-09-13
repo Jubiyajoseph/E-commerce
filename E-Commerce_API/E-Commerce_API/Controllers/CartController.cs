@@ -36,5 +36,12 @@ namespace E_Commerce_API.Controllers
             }
             return Ok(cart);
         }
+
+        [HttpDelete]
+        public async Task<bool> DeleteCart(int cartId)
+        {
+            var command = new DeleteCartCommand { CartId = cartId };
+            return await _mediator.Send(command);
+        }
     }
 }

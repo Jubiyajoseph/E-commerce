@@ -24,17 +24,25 @@ export class CartComponent implements OnInit {
   public userName!: string;
   userId!: number;
   public addressDetails: IUserAddress[] = [];
-  public cartDetails: Icartdetails[] = [];
+  public cartDetails:Icartdetails[]=[];
+  isCartEmpty!:string;
+  public cartDelete={
+    cartId:0,
+    productId:0
+  }
 
   ngOnInit(): void {
     this.loginService.username$.subscribe((data => {
       this.userName = data;
       this.addressService.getUserId(this.userName).subscribe((data => {
         this.userId = data.userId;
-        this.productService.viewCart(this.userId).subscribe((data) => {
-          this.cartDetails = data;
-          console.log(this.cartDetails)
-        })
+        this.productService.viewCart(this.userId).subscribe((data) => 
+        { 
+          this.cartDetails = data; 
+          if(this.cartDetails.length===0){
+            this.isCartEmpty="Oops! Nothing In CartList!";
+           }
+         })
         this.orderService.getAddress(this.userId).subscribe((data) => {
           this.addressDetails = data;
         })
@@ -45,16 +53,17 @@ export class CartComponent implements OnInit {
   showAddress() {
     this.router.navigate([`./add-user-address`]);
   }
-
-  viewCart() {
-    this.loginService.username$.subscribe((data => {
-      this.userName = data;
-      this.addressService.getUserId(this.userName).subscribe((data => {
-        this.userId = data.userId;
-        this.productService.viewCart(this.userId).subscribe((data) => {
-          this.cartDetails = data;
-        })
-      }))
-    }))
+  deleteCart(id:number){
+  this.productService.deleteCart(id).subscribe({
+    next:(response)=>
+    {
+      if(response===true){
+        alert('Deleted Successfully')
+      }
+      else{
+        alert('Error! Cannot Delete')
+      }
+    }
+  });
   }
 }
