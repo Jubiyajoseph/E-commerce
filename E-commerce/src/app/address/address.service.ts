@@ -38,4 +38,14 @@ export class AddressService {
   updateAddress(address: IAddress,id:number): Observable<any>{
     return this.http.put(`${this.baseUrl}/api/Address/${id}`,address);
   }
+
+  // deleteAddressById(id:number): Observable<any>{
+  //   return this.http.delete(`${this.baseUrl}/api/Address/${id}`);
+  // }
+
+  updateIsDeleted(id:number): Observable<any>{
+    //const data={IsDeleted: isDeleted};
+    const body = { addressId: id };
+    return this.http.put(`${this.baseUrl}/api/Address/update-isdeleted`,body);
+  }
 }

@@ -15,30 +15,33 @@ import { Icartdetails } from '../icartdetails';
 export class CartComponent implements OnInit {
 
   constructor(private router: Router,
-    private productService:ProductService, 
-    private loginService: LoginService, 
-    private addressService: AddressService, 
+    private productService: ProductService,
+    private loginService: LoginService,
+    private addressService: AddressService,
     private orderService: OrderService) {
 
   }
   public userName!: string;
   userId!: number;
   public addressDetails: IUserAddress[] = [];
-  public cartDetails:Icartdetails[]=[];
+  public cartDetails: Icartdetails[] = [];
 
   ngOnInit(): void {
     this.loginService.username$.subscribe((data => {
       this.userName = data;
       this.addressService.getUserId(this.userName).subscribe((data => {
         this.userId = data.userId;
-        this.productService.viewCart(this.userId).subscribe((data) => 
-        { this.cartDetails = data; console.log(this.cartDetails) })
+        this.productService.viewCart(this.userId).subscribe((data) => {
+          this.cartDetails = data;
+          console.log(this.cartDetails)
+        })
         this.orderService.getAddress(this.userId).subscribe((data) => {
           this.addressDetails = data;
         })
       }))
     }))
   }
+  
   showAddress() {
     this.router.navigate([`./add-user-address`]);
   }

@@ -45,11 +45,8 @@ namespace E_Commerce_API.Controllers
         [HttpPut("{id}")]
         public async Task<bool> UpdateAddress(int id, [FromBody] UpdateAddressCommand command)
         {            
-            // Set the ID from the route parameter
-            command.AddressId = id;
-
+            command.AddressId = id; 
             var result = await _mediator.Send(command);
-
             if (result)
             {
                 return true;
@@ -58,6 +55,28 @@ namespace E_Commerce_API.Controllers
             {
                 return false;
             }
+        }
+
+        //[HttpDelete("{addressId}")]
+        //public async Task<bool> Delete(int addressId)
+        //{
+        //    var command = new DeleteAddressCommand { AddressId = addressId };
+        //    var result = await _mediator.Send(command);
+
+        //    if (result)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        [HttpPut("update-isdeleted")]
+        public async Task<bool> UpdateAddressIsDeleted([FromBody] UpdateIsDeletedCommand command)
+        {
+            return await _mediator.Send(command);
         }
     }
 }
