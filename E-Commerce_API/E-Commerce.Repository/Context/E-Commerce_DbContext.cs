@@ -31,8 +31,6 @@ namespace E_Commerce.Repository.Context
         public DbSet<Order> Order { get; set; } = null!;
         public DbSet<OrderDetail> OrderDetail { get; set; } = null!;
         public DbSet<Cart> Cart { get; set; } = null!;
-        public DbSet<DefaultAddress> DefaultAddress { get; set; } = null!;
-
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

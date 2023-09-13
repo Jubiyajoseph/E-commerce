@@ -16,13 +16,9 @@ namespace E_Commerce.Model.Models.AddressModel
         public int UserId { get; private set; } 
         public User? User { get; set; }
         public bool IsDeleted { get; private set; }
+        public bool IsDefault { get; private set; }
 
-        private Address()
-        {
-
-        }
-
-        public Address(string residentialAddress,int cityId,int stateId,int countryId,int userId,bool isDeleted)
+        public Address(string residentialAddress,int cityId,int stateId,int countryId,int userId,bool isDeleted,bool isDefault)
         {
             ResidentialAddress = residentialAddress;
             CityId = cityId;
@@ -30,6 +26,7 @@ namespace E_Commerce.Model.Models.AddressModel
             CountryId = countryId;
             UserId = userId;
             IsDeleted = isDeleted;
+            IsDefault = isDefault;
         }
 
         public void UpdateAddress(string residentialAddress, int cityId, int stateId, int countryId,int userId)
@@ -44,6 +41,11 @@ namespace E_Commerce.Model.Models.AddressModel
         public void UpdateIsDeleted(bool isDeleted)
         {
             IsDeleted = isDeleted;
+        }
+
+        public void UpdateIsDefault(bool isDefault)
+        {
+            IsDefault = isDefault;
         }
 
     }

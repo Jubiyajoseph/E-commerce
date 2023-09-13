@@ -13,7 +13,7 @@ namespace E_Commerce_API.Request.Command
         }
         public async Task<bool> Handle(AddAddressCommand command, CancellationToken cancellationToken)
         {
-            Address address = new (command.ResidentialAddress, command.CityId,command.StateId,command.CountryId,command.UserId,command.IsDeleted);  
+            Address address = new (command.ResidentialAddress, command.CityId,command.StateId,command.CountryId,command.UserId,command.IsDeleted,command.IsDefault);  
             _context.Address.Add(address);
             await _context.SaveChangesAsync(cancellationToken);  
             return true;    

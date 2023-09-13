@@ -23,6 +23,8 @@ namespace E_Commerce.Repository.Configurations
             builder.Property(u=>u.UserId).IsRequired();
 
             builder.Property(i=>i.IsDeleted).IsRequired();
+
+            builder.Property(i=>i.IsDefault).IsRequired();
         }
     }
 }

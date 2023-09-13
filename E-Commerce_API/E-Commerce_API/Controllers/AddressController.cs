@@ -1,9 +1,7 @@
-﻿using E_Commerce.Model.Models.AddressModel;
-using E_Commerce_API.Request.Command;
+﻿using E_Commerce_API.Request.Command;
 using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -57,26 +55,38 @@ namespace E_Commerce_API.Controllers
             }
         }
 
-        //[HttpDelete("{addressId}")]
-        //public async Task<bool> Delete(int addressId)
-        //{
-        //    var command = new DeleteAddressCommand { AddressId = addressId };
-        //    var result = await _mediator.Send(command);
-
-        //    if (result)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
         [HttpPut("update-isdeleted")]
         public async Task<bool> UpdateAddressIsDeleted([FromBody] UpdateIsDeletedCommand command)
         {
             return await _mediator.Send(command);
+        }
+
+        [HttpGet("default/{userId}")]
+        public async Task<ActionResult<AddressDetailsQuery>> GetUserDefaultAddress(int userId)
+        {
+            var query = new GetUserDefaultAddressQuery { UserId = userId };
+            var addressInfo = await _mediator.Send(query);
+
+            if (addressInfo == null)
+            {
+                return Ok(null); 
+            }
+
+            return Ok(addressInfo);
+        }
+
+        [HttpPut("update-default-address")]
+        public async Task<bool> UpdateDefaultAddress(UpdateIsDefaultCommand command)
+        {
+            var result = await _mediator.Send(command);
+            if (result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
