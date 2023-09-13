@@ -1,9 +1,13 @@
 <div id="div">
   <label>
-    <h2>&nbsp;ProductDetails</h2>
-    <p id="p">Product Name:</p>
-    <p id="p">Quantity:</p>
-    <p id="p">Price:</p>
+    <h2>&nbsp;Product Details</h2>
+    <p id="p">Product Name:{{productDetails.name}}</p>
+    <form  id="form" [formGroup]="quantityForm">
+    <label id="p">Quantity:</label>
+    <input type="number" formControlName="quantity">
+    </form>
+    <p id="p">Price:{{productDetails.unitPrice}} </p>
+   
   </label>
   <label id="label">Deliver to this address:&nbsp;</label>
   <select>

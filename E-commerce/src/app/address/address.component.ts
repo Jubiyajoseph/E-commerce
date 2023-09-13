@@ -6,6 +6,7 @@ import { IState } from './Istate';
 import { ICountry } from './Icountry';
 import { IAddress } from './IAddress';
 import { LoginService } from '../login/Login.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-address',
@@ -16,7 +17,9 @@ export class AddressComponent implements OnInit{
   
 
   
-  constructor(private addressService: AddressService, private formBuilder: FormBuilder,private loginService:LoginService) {
+  constructor(private addressService: AddressService, 
+    private formBuilder: FormBuilder,
+    private loginService:LoginService) {
     
   }
 
@@ -73,8 +76,13 @@ export class AddressComponent implements OnInit{
       {
         this.newAddress.userId=data.userId
         this.addressService.addAddress(this.newAddress).subscribe( {
-          next: () => { console.log("Address added sucessfully") },
-          error: () => { alert('ERROR! Address not inserted'); }
+          next: (response)=> {
+            if(response === true){
+              alert('Address Added Successfully');
+            }
+            else{
+              alert('Error!Address Not Added');
+            }}
         });
       })
     })

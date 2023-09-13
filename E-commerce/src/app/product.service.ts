@@ -6,11 +6,13 @@ import { IProductDetails } from './iproduct-details';
 import { Iwishlist } from './iwishlist';
 import { ICartlist } from './icartlist';
 import { IupdateWishlist } from './iupdate-wishlist';
+import { IorderDetails } from './iorder-details';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
 
   constructor(private http: HttpClient) { }
 
@@ -54,4 +56,24 @@ export class ProductService {
   {
     return this.http.put<void>(`${this.baseUrl}/api/WishList`,updateQuery)
   }
+
+  deleteCart(id:number):Observable<any>
+  {
+    return this.http.delete<any>(`${this.baseUrl}/api/Cart?cartId=${id}`)
+  }
+  
+  deleteWishList(id:number):Observable<any>
+  {
+    return this.http.delete<any>(`${this.baseUrl}/api/WishList?wishListId=${id}`)
+  }
+  
+ getOrderDetails(id:number):Observable<any>
+ {
+  return this.http.get<any>(`${this.baseUrl}/api/OrderDetail?userId=${id}`)
+ }
+
+ cancelOrder(cancelOrder:any):Observable<any>{
+
+  return this.http.put<any>(`${this.baseUrl}/api/Order`,cancelOrder)
+ }
 }

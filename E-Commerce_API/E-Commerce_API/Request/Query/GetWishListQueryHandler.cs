@@ -1,4 +1,5 @@
-﻿using E_Commerce.Repository.Context;
+﻿using E_Commerce.Model.Models.OrderModel;
+using E_Commerce.Repository.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,8 @@ namespace E_Commerce_API.Request.Query
                      .Include(w =>w.Product)
                      .Where(w=>w.UserID == query.UserId && w.IsDeleted == false)
                      .Select(w => new WishListDetailsQuery
-                     {  
+                     {
+                         WishListId=w.WishListId,
                          ProductId=w.Product!.Id,                    
                          ProductName=  w.Product!.Name
                      }).ToListAsync(cancellationToken);

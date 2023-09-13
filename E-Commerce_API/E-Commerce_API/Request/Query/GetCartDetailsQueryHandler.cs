@@ -1,4 +1,5 @@
-﻿using E_Commerce.Model.Models.ProductsModel;
+﻿using E_Commerce.Model.Models.OrderModel;
+using E_Commerce.Model.Models.ProductsModel;
 using E_Commerce.Repository.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ namespace E_Commerce_API.Request.Query
                             .Where(c => c.UserId == query.UserId)
                             .Select(c => new CartDetailsQuery
                             {
+                                CartId=c.CartId,
                                 ProductId = c.ProductId,
                                 ProductName = c.Product!.Name,
                                 UnitPrice = c.Product.UnitPrice,

@@ -1,21 +1,24 @@
-<h2>&nbsp;ProductDetails</h2>
+<h2>&nbsp;Product Details</h2>
+<p id="p">{{isCartEmpty}}</p>
 <div><!-- place *ngFor here to display product details from cart table-->
   <div id="div" *ngFor="let item of cartDetails">
     <label>
-      <p id="p"> product Name:{{item.productName}}</p>
+      <p id="p"> Product Name:{{item.productName}}</p>
       <p id="p">Quantity:{{item.quantity}}</p>
       <p id="p">Price:Rs.{{item.unitPrice * item.quantity}}</p>
-    </label>   
+    </label> 
+    <button id="button" (click)="deleteCart(item.cartId)">Delete</button>  
   </div>
-</div>
-<div  id="div">
+  <div  id="div" *ngIf="!isCartEmpty">
     <br>
     <label id="label">Deliver to this address:&nbsp;&nbsp;</label>
     <select>
       <option value="">Select Your Address</option>
       <option *ngFor="let address of addressDetails" [value]="address.addressId">{{address.residentialAddress}},
-        {{address.cityName}},{{address.stateName}},{{address.countryName}}</option>
+        {{address.cityName}},
+        {{address.stateName}},{{address.countryName}}</option>
     </select>
     <button id="button">Place Order</button>
     <button id="button" (click)="showAddress()">Add New Address</button>
   </div>
+</div>

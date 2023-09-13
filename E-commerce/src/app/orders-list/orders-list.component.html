@@ -1,1 +1,11 @@
-<p>orders-list works!</p>
+<h2 id="h2"> My Orders</h2>
+<p>{{isOrderListEmpty}}</p>
+<div id="div" *ngFor="let item of OrderDetails"><!--place *ngFor to list odersDetails-->
+    <p id="p">Product Name:&nbsp;{{item.productName}}</p>
+    <p id="p">Ordered On:&nbsp;{{item.orderedOn | date:'fullDate'}}</p>
+    <p id="p">Price:&nbsp;{{item.totalPrice}}</p>
+    <p id="p">Order Status:&nbsp;{{item.statusName}}</p>
+    <div *ngIf="item.statusName!='Cancelled'">
+        <button id="button" (click)="cancelOrder(item.orderId)">Cancel Order</button>
+    </div>
+</div>

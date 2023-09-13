@@ -16,6 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductDetailsComponent implements OnInit {
 
   showQuantity=false;
+
   public productDetails: IProductDetails={
     id: 0,
     name: '',
@@ -85,7 +86,6 @@ export class ProductDetailsComponent implements OnInit {
           });
         }))
       }))
-
   }
 
   toAddToWishlist() {
@@ -114,8 +114,13 @@ export class ProductDetailsComponent implements OnInit {
       }))
   }
     
+
   buyNow(){
-    this.router.navigate([`./order-now`]);
+    const id:number= this.route.snapshot.params['id'];
+    this.router.navigate([`./${id}/order-now`],
+    {
+      relativeTo: this.route
+    });
   }
 }
 

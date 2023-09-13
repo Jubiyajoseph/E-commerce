@@ -2,8 +2,8 @@
 
 namespace E_Commerce_API.Request.Query
 {
-    public class GetUserIDQuery:IRequest<List<CartDetailsQuery>>
-    { 
+    public class GetOrderDetailQuery:IRequest<List<OrderDetailsQuery>>
+    {
         public int UserId { get; set; }
     }
 }
