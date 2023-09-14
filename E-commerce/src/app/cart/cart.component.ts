@@ -6,6 +6,7 @@ import { OrderService } from '../order.service';
 import { IUserAddress } from '../address/IUserAddress';
 import { ProductService } from '../product.service';
 import { Icartdetails } from '../icartdetails';
+import { Iplaceorder } from '../iplaceorder';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -30,7 +31,15 @@ export class CartComponent implements OnInit {
     cartId:0,
     productId:0
   }
-
+  public selectShippingAdressId!: number;
+  public placeOrderDetails: Iplaceorder = {
+    userId: 0,
+    billingAddressId: 0,
+    shippingAddressId: 0,
+    orderStatusId: 4,
+    orderedOn: new Date()
+  };
+  
   ngOnInit(): void {
     this.loginService.username$.subscribe((data => {
       this.userName = data;
@@ -53,6 +62,7 @@ export class CartComponent implements OnInit {
   showAddress() {
     this.router.navigate([`./add-user-address`]);
   }
+
   deleteCart(id:number){
   this.productService.deleteCart(id).subscribe({
     next:(response)=>
@@ -65,5 +75,31 @@ export class CartComponent implements OnInit {
       }
     }
   });
+  }
+  getShippingAdrress(){
+    this.placeOrderDetails.shippingAddressId = this.selectShippingAdressId;
+  }
+  placeOrder() {
+    this.loginService.username$.subscribe((data) => {
+      this.userName = data;
+      this.addressService.getUserId(this.userName).subscribe((data) => {
+        this.placeOrderDetails.userId = data.userId;
+        this.orderService.getDefaultAddress(this.placeOrderDetails.userId).subscribe((data) => {
+            this.placeOrderDetails.billingAddressId = data.addressId;
+            this.placeOrderDetails.orderStatusId = 4;
+            console.log(this.placeOrderDetails);
+           this.productService.placeOrder(this.placeOrderDetails).subscribe({
+            next: (response) => {
+              if (response === true) {
+                alert('Order Placed!');
+              }
+              else{
+                alert('Order not Placed!');
+              }
+            },
+          });
+          
+          });
+        })})
   }
 }

@@ -1,15 +1,15 @@
-SELECT * FROM [User]
-SELECT * FROM Country
-SELECT * FROM Cart
 SELECT * FROM [Address]
+SELECT * FROM Product
+SELECT * FROM Cart
+SELECT * FROM OrderDetail
 SELECT * FROM [Order]
 SELECT * FROM OrderStatus
 --drop table OrderStatus
 --drop table Cart
 
-SELECT * FROM OrderStatus
+SELECT * FROM WishList
 
---update OrderStatus set Status='Your order has been received.' where OrderStatusId=4
+--update [Order] set OrderStatusId=4 where OrderId=8
 --delete from Cart where  CartId in(1012,1013);
 --delete from Cart where  CartId in(1012,1013);
 

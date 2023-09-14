@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Model.Models.OrderModel;
 using E_Commerce.Repository.Context;
+using E_Commerce_API.Request.Query;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,17 +9,20 @@ namespace E_Commerce_API.Request.Command
     public class AddPlaceOrderCommandHandler:IRequestHandler<AddPlaceOrderCommand,bool>
     {
         private readonly E_Commerce_DbContext _context;
+        private readonly IMediator _mediator;
 
-        public AddPlaceOrderCommandHandler(E_Commerce_DbContext context)
+        public AddPlaceOrderCommandHandler(E_Commerce_DbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         public async Task<bool> Handle(AddPlaceOrderCommand command,CancellationToken cancellationToken)
         {
             using var transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
 
-            decimal totalPrice=1888;
+            var totalPrice = await _mediator.Send(new GetCartTotalPriceByUserIdQuery { UserId = command.UserId });
+           
             try
             {
 
@@ -43,8 +47,6 @@ namespace E_Commerce_API.Request.Command
                         .ToList();
 
                     //iterate through cart items
-
-                  
                     foreach (var cartItem in cartItems)
                     {
                         // Create an OrderDetail entry for each cart item   
@@ -64,8 +66,10 @@ namespace E_Commerce_API.Request.Command
                         _context.OrderDetail.Add(orderDetail);
                     }
 
-                    // Update the Cart table to link the cart items to the new order
+                    //update stock of each product in product table. 
+                    var isStockUpdated = await _mediator.Send(new UpdateProductStockCommand { UserId = command.UserId });
 
+                    // Update the Cart table to link the cart items to the new order
 
                     foreach (var cartItem in cartItems)
                     {
