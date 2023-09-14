@@ -15,30 +15,37 @@ namespace E_Commerce_API.Request.Command
 
         public async Task<bool> Handle(UpdateProductStockCommand command, CancellationToken cancellationToken)
         {
-            
-            var cartItems =  _context.Cart
-               .Where(item => (item.UserId == command.UserId) && item.OrderId == null)
-               .ToList();
 
-            if(cartItems != null) 
+            var cartItems = _context.Cart
+             .Where(item => (item.UserId == command.UserId) && item.OrderId == null)
+             .ToList();
+
+            bool isCartItemsTrue = await _context.Cart.Where(item => (item.UserId == command.UserId) && item.OrderId == null)
+              .AnyAsync();
+
+            if (isCartItemsTrue)
             {
                 foreach (var cartItem in cartItems)
                 {
                     var product = await _context.Product.FindAsync(cartItem.ProductId);
 
                     var productStock = await _context.Product
-                        .Where(p => p.Id == cartItem.ProductId)
-                        .Select(p => p.Stock).FirstOrDefaultAsync();
+                      .Where(p => p.Id == cartItem.ProductId)
+                      .Select(p => p.Stock).FirstOrDefaultAsync();
 
-                    if (productStock > cartItem.Quantity)
+                    if (productStock >= cartItem.Quantity)
                     {
                         product!.UpdateStock(product.Stock - cartItem.Quantity);
                         await _context.SaveChangesAsync();
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 return true;
-            }           
-            return false;                 
+            }
+            return false;
         }
 
     }

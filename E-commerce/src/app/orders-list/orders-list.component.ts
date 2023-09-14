@@ -59,6 +59,7 @@ export class OrdersListComponent implements OnInit {
       {
         if(response===true){
             alert('Order Cancelled')
+            //write stock update api
         }
         else{
           alert('Error! Cannot Cancel Order')

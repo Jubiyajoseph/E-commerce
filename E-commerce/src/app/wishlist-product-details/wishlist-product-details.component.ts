@@ -92,7 +92,11 @@ export class WishlistProductDetailsComponent implements OnInit{
  }
   
  buyNow(){
-  this.router.navigate([`./order-now`]);
+  const id:number= this.route.snapshot.params['id'];
+  this.router.navigate([`./${id}/order-now`],
+  {
+    relativeTo: this.route
+  });
 }
 
 }

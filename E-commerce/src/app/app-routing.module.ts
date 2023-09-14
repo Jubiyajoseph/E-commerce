@@ -16,18 +16,20 @@ import { UpdateaddressComponent } from './updateaddress/updateaddress.component'
 const routes: Routes = [
   { path: '', component: LoginComponent },
 
-  { path: 'home', component: HomeComponent, },
+  { path: 'home', component: HomeComponent },
 
   {
     path: 'product-list',
     children: [
       { path: '', component: ProductListComponent },
-      { path: ':id/product-details',
-      children:[
-        { path:'', component: ProductDetailsComponent },
-        { path:':id/order-now',component:OrderNowComponent}
-    ] }
-    ]
+      {
+        path: ':id/product-details',
+        children: [
+          { path: '', component: ProductDetailsComponent },
+          { path: ':id/order-now', component: OrderNowComponent },
+        ],
+      },
+    ],
   },
 
   // { path: 'product-details',
@@ -43,8 +45,14 @@ const routes: Routes = [
     path: 'wishlist',
     children: [
       { path: '', component: AddToWishlistComponent },
-      { path: ':id/wishlist-product-details', component: WishlistProductDetailsComponent },
-    ]
+      {
+        path: ':id/wishlist-product-details',
+        children: [
+          { path: '', component: WishlistProductDetailsComponent },
+          { path: ':id/order-now', component: OrderNowComponent },
+        ]
+      },
+    ],
   },
 
   { path: 'add-user-address', component: AddressComponent },
@@ -53,19 +61,19 @@ const routes: Routes = [
 
   { path: 'orders-list', component: OrdersListComponent },
 
-  { 
+  {
     path: 'user-address',
     children: [
-      { path: '', component: UseraddressComponent},
-      { path: ':id/update-address', component:UpdateaddressComponent}
-    ]
-    },
+      { path: '', component: UseraddressComponent },
+      { path: ':id/update-address', component: UpdateaddressComponent },
+    ],
+  },
 
-  { path: 'update-address', component: UpdateaddressComponent }
+  { path: 'update-address', component: UpdateaddressComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

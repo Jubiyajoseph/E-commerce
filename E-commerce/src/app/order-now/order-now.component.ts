@@ -48,7 +48,7 @@ export class OrderNowComponent implements OnInit {
     userId: 0,
     billingAddressId: 0,
     shippingAddressId: 0,
-    orderStatusId: 0,
+    orderStatusId: 4,
     orderedOn: new Date()
   };
   public addressDetails: IUserAddress[] = [];
@@ -106,24 +106,26 @@ export class OrderNowComponent implements OnInit {
           .subscribe((data) => {
             this.placeOrderDetails.billingAddressId = data.addressId;
           });
-        //this.placeOrderDetails.shippingAddressId = this.selectShippingAdressId;
+        
         this.placeOrderDetails.orderStatusId = 4;
-        //console.log(this.placeOrderDetails);
-
         this.cartList.quantity = this.quantityForm.get('quantity')?.value;
         this.productService.addToCart(this.cartList).subscribe({
           next: (response) => {
             if (response === true) {
-              
-
               this.productService.placeOrder(this.placeOrderDetails).subscribe({
                 next: (response) => {
                   if (response === true) {
                     alert('Order Placed!');
                   }
+                  else{
+                    alert('Order not Placed!');
+                  }
                 },
               });
             } 
+            else{
+              alert('Check Stock First!');
+            }
           }
         });
       });
