@@ -28,5 +28,14 @@ namespace E_Commerce.Model.Models.OrderModel
             Quantity = quantity;
             OrderId = ordrerId;
         }
+
+        public Cart()
+        {
+        }
+
+        public void UpdateOrderIdInCart(int orderId)
+        {
+            OrderId = orderId;
+        }
     }
 }

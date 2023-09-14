@@ -15,7 +15,7 @@ namespace E_Commerce_API.Request.Command
         public async Task<bool> Handle(AddCartCommand command, CancellationToken cancellationToken)
         {
 
-            bool isAlreadyInCart = await _context.Cart.AnyAsync(c=>c.UserId==command.UserId && c.ProductId==command.ProductId,cancellationToken);
+            bool isAlreadyInCart = await _context.Cart.AnyAsync(c=>c.UserId==command.UserId && c.ProductId==command.ProductId && c.OrderId == null,cancellationToken);
             bool isQuantity = await _context.Product.AnyAsync(p=>p.Stock >= command.Quantity);
 
             if (isAlreadyInCart)

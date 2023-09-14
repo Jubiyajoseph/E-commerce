@@ -13,11 +13,12 @@ namespace E_Commerce_API.Request.Query
             _context = context;
         }
 
+        //this one venda
         public async Task<List<CartDetailsQuery>> Handle(GetUserIDQuery query, CancellationToken cancellationToken)
         {
             var cart = await _context.Cart
                 .Include(c=>c.Product)
-                .Where(c=>c.UserId == query.UserId) 
+                .Where(c=>c.UserId == query.UserId && c.OrderId==null) 
                 .Select(c=>new CartDetailsQuery
                 {
                     ProductId=c.ProductId,
