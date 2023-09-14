@@ -27,5 +27,10 @@ namespace E_Commerce.Model.Models.ProductsModel
             CategoryId = categoryId;
             UnitPrice = unitPrice;
         }
+
+        public void UpdateStock(int stock)
+        {
+            Stock = stock;
+        }
     }
 }

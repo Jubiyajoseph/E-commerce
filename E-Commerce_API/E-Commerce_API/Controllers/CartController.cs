@@ -43,5 +43,42 @@ namespace E_Commerce_API.Controllers
             var command = new DeleteCartCommand { CartId = cartId };
             return await _mediator.Send(command);
         }
+
+        [HttpGet("{userId}/cart-total-price")]
+        public async Task<ActionResult<decimal>> GetUserCartTotal(int userId)
+        {
+            var query = new GetCartTotalPriceByUserIdQuery { UserId = userId };
+            var total = await _mediator.Send(query);
+
+            return Ok(total);
+        }
+
+
+        [HttpGet("GetCartItemsByUserId/{userId}")]
+        public async Task<IActionResult> GetCartItemsByUserId(int userId)
+        {
+            var query = new GetCartQuantityByUserIdQuery { UserId = userId };
+            var cartItems = await _mediator.Send(query);
+
+            return Ok(cartItems);
+        }
+
+
+        [HttpPut("update-stock")]
+        public async Task<bool> UpdateStock([FromBody] UpdateProductStockCommand command)
+        {
+            
+                bool result = await _mediator.Send(command);
+
+                if (result)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            
+        }
     }
 }
