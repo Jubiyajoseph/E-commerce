@@ -32,9 +32,7 @@ namespace E_Commerce_API.Request.Query
 
             if (addressInfo == null)
             {
-                return null;
-                //throw new NotFoundException("Default address not found for the user.");
-
+                throw new NotFoundException("Default address not found for the user.");
             }
             return addressInfo;
         }
