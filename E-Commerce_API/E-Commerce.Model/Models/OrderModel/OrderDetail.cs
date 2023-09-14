@@ -10,7 +10,7 @@ namespace E_Commerce.Model.Models.OrderModel
         public  int OrderId { get; private set; }
         public Order? Order { get; set; }
         public int Quantity { get; private set; }
-        public  decimal UnitPrice { get; private set; }
+        public  decimal? UnitPrice { get; private set; }
 
         public OrderDetail(int productId,int orderId, int quantity,decimal unitPrice)
         {
@@ -18,6 +18,18 @@ namespace E_Commerce.Model.Models.OrderModel
             OrderId = orderId;
             Quantity = quantity; 
             UnitPrice=unitPrice;
+        }
+
+        public OrderDetail()
+        {
+        }
+
+        public void AddOrderDetails(int productId,int orderId,int quantity,decimal unitPrice)
+        {
+            ProductId = productId;
+            OrderId = orderId;
+            Quantity = quantity;
+            UnitPrice = unitPrice;
         }
     }
 }

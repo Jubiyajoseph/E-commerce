@@ -1,13 +1,15 @@
 SELECT * FROM [User]
 SELECT * FROM Country
-SELECT * FROM State
+SELECT * FROM Cart
 SELECT * FROM [Address]
 SELECT * FROM [Order]
-SELECT * FROM OrderDetail
+SELECT * FROM OrderStatus
 --drop table OrderStatus
+--drop table Cart
+
 SELECT * FROM OrderStatus
 
---update Product set BrandId=3 where ProductId=3
+--update OrderStatus set Status='Your order has been received.' where OrderStatusId=4
 --delete from Cart where  CartId in(1012,1013);
 --delete from Cart where  CartId in(1012,1013);
 

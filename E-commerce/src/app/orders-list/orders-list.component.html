@@ -5,7 +5,7 @@
     <p id="p">Ordered On:&nbsp;{{item.orderedOn | date:'fullDate'}}</p>
     <p id="p">Price:&nbsp;{{item.totalPrice}}</p>
     <p id="p">Order Status:&nbsp;{{item.statusName}}</p>
-    <div *ngIf="item.statusName!='Cancelled'">
+    <div *ngIf="item.statusName !== 'Cancelled.' && item.statusName !== 'Delivered.'">
         <button id="button" (click)="cancelOrder(item.orderId)">Cancel Order</button>
     </div>
 </div>

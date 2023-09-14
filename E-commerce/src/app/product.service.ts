@@ -76,4 +76,8 @@ export class ProductService {
 
   return this.http.put<any>(`${this.baseUrl}/api/Order`,cancelOrder)
  }
+
+ placeOrder(order:any):Observable<any>{
+  return this.http.post<any>(`${this.baseUrl}/api/Order/place-order`,order)
+ }
 }
