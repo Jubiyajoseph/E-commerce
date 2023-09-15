@@ -14,9 +14,9 @@ import { IupdateWishlist } from '../iupdate-wishlist';
   templateUrl: './wishlist-product-details.component.html',
   styleUrls: ['./wishlist-product-details.component.sass']
 })
-export class WishlistProductDetailsComponent implements OnInit{
+export class WishlistProductDetailsComponent implements OnInit {
 
-  public productDetails: IProductDetails={
+  public productDetails: IProductDetails = {
     id: 0,
     name: '',
     weight: 0,
@@ -25,78 +25,88 @@ export class WishlistProductDetailsComponent implements OnInit{
     categoryName: '',
     unitPrice: 0
   }
-  public cartList:ICartlist={
-    userId:0,
-    productId:0,
-    quantity:0
+  public cartList: ICartlist = {
+    userId: 0,
+    productId: 0,
+    quantity: 0
   }
 
-  public updateQuery:IupdateWishlist={
+  public updateQuery: IupdateWishlist = {
     userID: 0,
     productID: 0,
   }
-  username!:string;
-  quantityForm!:FormGroup;
-  showQuantity=false;
-  
-  constructor(private router:Router,
-    private productService:ProductService,
-    private route:ActivatedRoute,
-    private addressService:AddressService,
+  username!: string;
+  quantityForm!: FormGroup;
+  showQuantity = false;
+
+  stockQuantity!: number;
+  outOfStockDisabled: boolean = false;
+
+  constructor(private router: Router,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private addressService: AddressService,
     private formBuilder: FormBuilder,
-    private loginService:LoginService){
+    private loginService: LoginService) {
 
   }
 
   ngOnInit(): void {
     const id: number = this.route.snapshot.params['id'];
     this.productService.getProductById(id).subscribe((data) => {
-      this.productDetails = data;    
+      this.productDetails = data;
     });
 
-    
-    this.quantityForm=this.formBuilder.group({
-      quantity:[' ',Validators.required]
+
+    this.quantityForm = this.formBuilder.group({
+      quantity: [' ', Validators.required]
+    })
+
+    this.productService.getProductStock(id).subscribe((data) => {
+      this.stockQuantity = data;
+      this.outOfStockDisabled = data === 0;
     })
   }
 
   toAddToCart() {
-  
-    const id:number= this.route.snapshot.params['id'];
-    this.cartList.productId=id;
-    this.updateQuery.productID=id;
-    this.loginService.username$.subscribe((data=>
-      {
-       this.username=data;
-       this.addressService.getUserId(this.username).subscribe((data=>
-        {
-          this.cartList.userId = data.userId;
-          this.updateQuery.userID = data.userId;
-          this.cartList.quantity=this.quantityForm.get('quantity')?.value;
-          console.log(this.cartList);
+    const id: number = this.route.snapshot.params['id'];
+    this.cartList.productId = id;
+    this.updateQuery.productID = id;
+    this.loginService.username$.subscribe((data => {
+      this.username = data;
+      this.addressService.getUserId(this.username).subscribe((data => {
+        this.cartList.userId = data.userId;
+        this.updateQuery.userID = data.userId;
+        this.cartList.quantity = this.quantityForm.get('quantity')?.value;
+        if (!this.cartList.quantity || this.cartList.quantity < 1) {
+          alert('Enter Valid Quantity ')
+        }
+        else {
           this.productService.addToCart(this.cartList).subscribe({
 
-            next:(response)=>
-            {
-              if(response===true){
+            next: (response) => {
+              if (response === true) {
                 alert('Added To Cart')
+                this.router.navigate(['./cart']);
                 this.productService.updateWishList(this.updateQuery).subscribe()
               }
-              else{
+              else {
                 alert('Already added or Check stock')
               }
             }
           });
-        }))
+        }
+
       }))
- }
-  
- buyNow(){
-  const id:number= this.route.snapshot.params['id'];
-  this.router.navigate([`./${id}/order-now`],
-  {
-    relativeTo: this.route
-  });
-}
+    }))
+  }
+
+  buyNow() {
+    const id: number = this.route.snapshot.params['id'];
+    this.router.navigate([`./${id}/order-now`],
+      {
+        relativeTo: this.route
+      });
+  }
 
 }

@@ -35,6 +35,13 @@ namespace E_Commerce_API.Request.Command
 
                 if (order != null)
                 {
+                    // Get all items in the cart for the user where OrderId is null
+                    bool isCartItems = await _context.Cart
+                        .Where(cartItem => cartItem.UserId == command.UserId && cartItem.OrderId == null)
+                        .AnyAsync();
+
+                    if (isCartItems)
+                    { 
                     _context.Order.Add(order);
                     await _context.SaveChangesAsync(cancellationToken);
 
@@ -55,12 +62,12 @@ namespace E_Commerce_API.Request.Command
                         //geting unitprice for each product id
                         decimal unitPrice = await _context.Product
                                                     .Where(p => p.Id == cartItem.ProductId)
-                                                    .Select(p => p.UnitPrice) 
+                                                    .Select(p => p.UnitPrice)
                                                     .FirstOrDefaultAsync();
 
                         orderDetail.AddOrderDetails(cartItem.ProductId,
                                                     newOrderId,
-                                                    cartItem.Quantity, 
+                                                    cartItem.Quantity,
                                                     unitPrice);
 
                         _context.OrderDetail.Add(orderDetail);
@@ -76,7 +83,7 @@ namespace E_Commerce_API.Request.Command
                         //  cartItem.OrderId = newOrderId;
                         cartItem.UpdateOrderIdInCart(newOrderId);
 
-                    } 
+                    }
 
                     await _context.SaveChangesAsync(cancellationToken);
 
@@ -84,6 +91,12 @@ namespace E_Commerce_API.Request.Command
                     await transaction.CommitAsync(cancellationToken);
 
                     return true;
+                    }
+                    else
+                    {
+                        return false;
+                    } 
+                    
                 }
                 else
                 {

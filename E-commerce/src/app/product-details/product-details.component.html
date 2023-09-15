@@ -1,5 +1,4 @@
 <div>
-
     <div id="div">
         <h4>&nbsp;&nbsp; {{productDetails.name}}</h4>
         <p id="p">Brand :{{productDetails.brandName}}</p>
@@ -7,17 +6,17 @@
         <p id="p">In Stock : {{productDetails.stock}}</p>
         <p id="p">Category : {{productDetails.categoryName}}</p>
         <p id="p">Price : Rs {{ productDetails.unitPrice}} </p>
-        <form  id="form" [formGroup]="quantityForm"><!--continue here-->
-            <button id="button" (click)="showQuantity=true">Add To Cart</button>
+        <form id="form" [formGroup]="quantityForm">
+            <button id="button" (click)="showQuantity=true" [disabled]="outOfStockDisabled">Add To Cart</button>
             <div *ngIf="showQuantity">
                 <label>Quantity:</label>
-                <input type="number" formControlName="quantity">
-                <button  id="button" (click)="toAddToCart()">Add</button>
+                <input type="number" formControlName="quantity" min="1" pattern="[1-9][0-9]*">
+                <button id="button" (click)="toAddToCart()">Add</button>
             </div>
         </form>
-        
+
         <button id="button" (click)="toAddToWishlist()">Add to Wishlist</button>
-      
-        <button id="button" (click)="buyNow()">Buy Now</button>
+        
+        <button id="button" (click)="buyNow()" [disabled]="outOfStockDisabled">Buy Now</button>
     </div>
 </div>

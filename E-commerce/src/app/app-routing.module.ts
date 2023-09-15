@@ -31,14 +31,6 @@ const routes: Routes = [
       },
     ],
   },
-
-  // { path: 'product-details',
-  //   children:[
-  //             { path:'', component: ProductDetailsComponent },
-  //             { path:':id/order-now',component:OrderNowComponent}
-  //         ]
-  // },
-
   { path: 'cart', component: CartComponent },
 
   {
@@ -76,4 +68,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

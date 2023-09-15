@@ -25,4 +25,12 @@ export class OrderService {
   updateDefaultAddress(changeDefaultAddress: any): Observable<any>{
     return this.http.put<any>(`${this.baseUrl}/api/Address/update-default-address`,changeDefaultAddress); 
   }
+
+  cancelOrder(cancelOrder:any):Observable<any>{
+    return this.http.put<any>(`${this.baseUrl}/api/Order`,cancelOrder)
+   }
+
+   updateStock(productStockUpdate: any): Observable<any>{
+    return this.http.put<any>(`${this.baseUrl}/api/Order/stock-update-on-cancel-order`,productStockUpdate)
+   }
 }

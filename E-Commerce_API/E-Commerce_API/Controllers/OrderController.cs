@@ -42,6 +42,17 @@ namespace E_Commerce_API.Controllers
             return false;
         }
 
+        [HttpPut("stock-update-on-cancel-order")]
+
+        public async Task<bool> CancelOrder([FromBody] CancelOrderCommand command)
+        {
+            var result = await _mediator.Send(command);
+            if (result)
+            {
+                return true;
+            }
+            return false;
+        }
        
     }
 }

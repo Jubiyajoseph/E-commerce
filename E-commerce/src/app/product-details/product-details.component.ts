@@ -41,6 +41,9 @@ export class ProductDetailsComponent implements OnInit {
  username!:string;
  quantityForm!:FormGroup;
 
+ stockQuantity!:number;
+ outOfStockDisabled: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -59,6 +62,11 @@ export class ProductDetailsComponent implements OnInit {
     this.quantityForm=this.formBuilder.group({
       quantity:[' ',Validators.required]
     })
+
+    this.productService.getProductStock(id).subscribe((data)=>{
+      this.stockQuantity = data;
+      this.outOfStockDisabled = data === 0;
+    })
   }
 
   toAddToCart() {
@@ -72,18 +80,26 @@ export class ProductDetailsComponent implements OnInit {
         {
           this.cartList.userId= data.userId;
           this.cartList.quantity=this.quantityForm.get('quantity')?.value;
-          this.productService.addToCart(this.cartList).subscribe({
+          if(!this.cartList.quantity || this.cartList.quantity < 1)
+          {
+            alert('Enter Valid Quantity ')
+          }
+          else{
+            this.productService.addToCart(this.cartList).subscribe({
 
-            next:(response)=>
-            {
-              if(response===true){
-                alert('Added To Cart')
+              next:(response)=>
+              {
+                if(response===true){
+                  alert('Added To Cart')
+                  this.router.navigate(['./cart']);
+                }
+                else{
+                  alert('Already added or Check stock')
+                }
               }
-              else{
-                alert('Already added or Check stock')
-              }
-            }
-          });
+            });
+          }
+          
         }))
       }))
   }

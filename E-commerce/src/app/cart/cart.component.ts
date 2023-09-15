@@ -25,11 +25,11 @@ export class CartComponent implements OnInit {
   public userName!: string;
   userId!: number;
   public addressDetails: IUserAddress[] = [];
-  public cartDetails:Icartdetails[]=[];
-  isCartEmpty!:string;
-  public cartDelete={
-    cartId:0,
-    productId:0
+  public cartDetails: Icartdetails[] = [];
+  isCartEmpty!: string;
+  public cartDelete = {
+    cartId: 0,
+    productId: 0
   }
   public selectShippingAdressId!: number;
   public placeOrderDetails: Iplaceorder = {
@@ -39,67 +39,68 @@ export class CartComponent implements OnInit {
     orderStatusId: 4,
     orderedOn: new Date()
   };
-  
+
   ngOnInit(): void {
     this.loginService.username$.subscribe((data => {
       this.userName = data;
       this.addressService.getUserId(this.userName).subscribe((data => {
         this.userId = data.userId;
-        this.productService.viewCart(this.userId).subscribe((data) => 
-        { 
-          this.cartDetails = data; 
-          if(this.cartDetails.length===0){
-            this.isCartEmpty="Oops! Nothing In CartList!";
-           }
-         })
+        this.productService.viewCart(this.userId).subscribe((data) => {
+          this.cartDetails = data;
+          if (this.cartDetails.length === 0) {
+            this.isCartEmpty = "Oops! Nothing In CartList!";
+          }
+        })
         this.orderService.getAddress(this.userId).subscribe((data) => {
           this.addressDetails = data;
         })
       }))
     }))
   }
-  
+
   showAddress() {
     this.router.navigate([`./add-user-address`]);
   }
 
-  deleteCart(id:number){
-  this.productService.deleteCart(id).subscribe({
-    next:(response)=>
-    {
-      if(response===true){
-        alert('Deleted Successfully')
+  deleteCart(id: number) {
+    this.productService.deleteCart(id).subscribe({
+      next: (response) => {
+        if (response === true) {
+          alert('Deleted Successfully')
+        }
+        else {
+          alert('Error! Cannot Delete')
+        }
       }
-      else{
-        alert('Error! Cannot Delete')
-      }
-    }
-  });
+    });
   }
-  getShippingAdrress(){
+
+  getShippingAdrress() {
     this.placeOrderDetails.shippingAddressId = this.selectShippingAdressId;
   }
+  
   placeOrder() {
     this.loginService.username$.subscribe((data) => {
       this.userName = data;
       this.addressService.getUserId(this.userName).subscribe((data) => {
         this.placeOrderDetails.userId = data.userId;
         this.orderService.getDefaultAddress(this.placeOrderDetails.userId).subscribe((data) => {
-            this.placeOrderDetails.billingAddressId = data.addressId;
-            this.placeOrderDetails.orderStatusId = 4;
-            console.log(this.placeOrderDetails);
-           this.productService.placeOrder(this.placeOrderDetails).subscribe({
+          this.placeOrderDetails.billingAddressId = data.addressId;
+          this.placeOrderDetails.orderStatusId = 4;
+          console.log(this.placeOrderDetails);
+          this.productService.placeOrder(this.placeOrderDetails).subscribe({
             next: (response) => {
               if (response === true) {
                 alert('Order Placed!');
               }
-              else{
+              else {
                 alert('Order not Placed!');
               }
             },
           });
-          
-          });
-        })})
+
+        });
+      })
+    })
   }
 }
