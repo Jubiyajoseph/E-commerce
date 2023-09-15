@@ -12,7 +12,7 @@
   <div  id="div" *ngIf="!isCartEmpty">
     <br>
     <label id="label">Deliver to this address:&nbsp;&nbsp;</label>
-    <select [(ngModel)]="selectShippingAdressId" (change)="getShippingAdrress()">
+    <select [(ngModel)]="selectShippingAdressId" (change)="getShippingAdrress()" id="select">
       <option *ngFor="let address of addressDetails" [value]="address.addressId">{{address.residentialAddress}},
         {{address.cityName}},
         {{address.stateName}},{{address.countryName}}</option>

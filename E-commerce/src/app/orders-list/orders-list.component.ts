@@ -147,7 +147,6 @@ export class OrdersListComponent implements OnInit {
           .subscribe((data) => 
           {
             this.OrderDetails = data;
-            console.log(data);
             if (this.OrderDetails.length == 0) 
             {
               this.isOrderListEmpty =
