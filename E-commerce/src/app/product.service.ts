@@ -78,5 +78,13 @@ export class ProductService {
 
  getProductStock(stock:number):Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/api/Product/stock?ProductId=${stock}`)
+}
+
+ getOrderDetailsByDate(userId:number,startDate:Date,endDate:Date):Observable<any>{
+  return this.http.get<IorderDetails>(`${this.baseUrl}/api/OrderDetail/search-by-date?userId=${userId}&startDate=${startDate}&endDate=${endDate}`)
+ }
+
+ getOrderDetailsByName(searchTerm:string,userId:number):Observable<any>{
+  return this.http.get<IorderDetails>(`${this.baseUrl}/api/OrderDetail/search-by-name?searchTerm=${searchTerm}&userId=${userId}`)
  }
 }

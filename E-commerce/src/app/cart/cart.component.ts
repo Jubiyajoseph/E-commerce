@@ -11,17 +11,16 @@ import { Iplaceorder } from '../iplaceorder';
 @Component({
   selector: 'app-add-to-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.sass']
+  styleUrls: ['./cart.component.sass'],
 })
 export class CartComponent implements OnInit {
-
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private productService: ProductService,
     private loginService: LoginService,
     private addressService: AddressService,
-    private orderService: OrderService) {
-
-  }
+    private orderService: OrderService
+  ) {}
   public userName!: string;
   userId!: number;
   public addressDetails: IUserAddress[] = [];
@@ -37,13 +36,13 @@ export class CartComponent implements OnInit {
     billingAddressId: 0,
     shippingAddressId: 0,
     orderStatusId: 4,
-    orderedOn: new Date()
+    orderedOn: new Date(),
   };
 
   ngOnInit(): void {
-    this.loginService.username$.subscribe((data => {
+    this.loginService.username$.subscribe((data) => {
       this.userName = data;
-      this.addressService.getUserId(this.userName).subscribe((data => {
+      this.addressService.getUserId(this.userName).subscribe((data) => {
         this.userId = data.userId;
         this.productService.viewCart(this.userId).subscribe((data) => {
           this.cartDetails = data;
@@ -52,10 +51,15 @@ export class CartComponent implements OnInit {
           }
         })
         this.orderService.getAddress(this.userId).subscribe((data) => {
-          this.addressDetails = data;
-        })
-      }))
-    }))
+          if(data.length==0){
+            alert("Add Your Address First!")
+          }
+          else{
+            this.addressDetails = data;
+          }
+        });
+      });
+    });
   }
 
   showAddress() {
@@ -80,27 +84,42 @@ export class CartComponent implements OnInit {
   }
   
   placeOrder() {
+
+  if(this.placeOrderDetails.shippingAddressId==0){
+    alert("Enter Shipping Address!")
+  }
+
+  else{
     this.loginService.username$.subscribe((data) => {
       this.userName = data;
       this.addressService.getUserId(this.userName).subscribe((data) => {
         this.placeOrderDetails.userId = data.userId;
-        this.orderService.getDefaultAddress(this.placeOrderDetails.userId).subscribe((data) => {
-          this.placeOrderDetails.billingAddressId = data.addressId;
-          this.placeOrderDetails.orderStatusId = 4;
-          console.log(this.placeOrderDetails);
-          this.productService.placeOrder(this.placeOrderDetails).subscribe({
-            next: (response) => {
-              if (response === true) {
-                alert('Order Placed!');
-              }
-              else {
-                alert('Order not Placed!');
-              }
-            },
+        this.orderService
+          .getDefaultAddress(this.placeOrderDetails.userId)
+          .subscribe((data) => {
+            if (data.addressId == 0) {
+              alert('Set your Default Address First! And Place Order');
+            } 
+            else {
+              this.placeOrderDetails.billingAddressId = data.addressId;
+              this.placeOrderDetails.orderStatusId = 4; // in database orderstatus 4 means 'Your order has been received.'
+              
+              this.productService.placeOrder(this.placeOrderDetails).subscribe({
+                next: (response) => {
+                  if (response === true)
+                   {
+                    alert('Order Placed!');
+                  } 
+                  else
+                   {
+                    alert('Order not Placed!');
+                   }
+                },
+              });
+            }
           });
-
-        });
-      })
-    })
+      });
+    });
   }
+}
 }

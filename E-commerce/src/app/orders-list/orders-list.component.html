@@ -1,5 +1,29 @@
 <h2 id="h2"> My Orders</h2>
-<p>{{isOrderListEmpty}}</p>
+<p id="p-red">{{isOrderListEmpty}}</p>
+
+<!--<input [(ngModel)]="productName" placeholder="Enter product name"> -->
+<form align="center" [formGroup]="orderListFormGroup">
+<div id="div">
+    <input type="text" formControlName="searchTerm" placeholder="Search by product name" size="20px"/>
+    <button id="button" (click)="search()">search</button>
+    </div>
+</form>
+<div  id="div">
+     <button id="button" (click)="showSearchByDate=true">search By Date</button>
+</div>
+<br>
+
+<div id="div" *ngIf="showSearchByDate">
+    <br>
+<label id="label">Date From:</label>
+<input [(ngModel)]="startDate" type="date">
+<label id="label">End Date:</label>
+<input [(ngModel)]="endDate" type="date">
+<button  id="button" (click)="filterOrders(startDate,endDate)">Filter Orders</button>
+</div>
+
+
+   
 <div id="div" *ngFor="let item of OrderDetails"><!--place *ngFor to list odersDetails-->
     <p id="p">Product Name:&nbsp;{{item.productName}}</p>
     <p id="p">Ordered On:&nbsp;{{item.orderedOn | date:'fullDate'}}</p>

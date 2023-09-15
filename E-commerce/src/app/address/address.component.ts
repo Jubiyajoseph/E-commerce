@@ -42,10 +42,10 @@ export class AddressComponent implements OnInit {
     })
 
     this.addressForm = this.formBuilder.group({
-      address: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      state: new FormControl(null, [Validators.required]),
-      country: new FormControl(null, [Validators.required])
+      address: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required])
     })
   }
 
@@ -71,14 +71,19 @@ export class AddressComponent implements OnInit {
       this.username = data;
       this.addressService.getUserId(this.username).subscribe((data) => {
         this.newAddress.userId = data.userId
+        if((this.newAddress.cityId==0) || (this.newAddress.stateId  ==0)|| (this.newAddress.countryId  ==0) ||( this.newAddress.residentialAddress.length==0))
+        {
+          alert('Enter Valid Entries');
+        }
+        else{
         this.addressService.addAddress(this.newAddress).subscribe({
           next: () => {
-            console.log("Address added sucessfully");
-            alert('Address added')
+            alert('Address added sucessfully')
           },
           error: () => { alert('ERROR! Address not inserted'); }
         });
-      })
+      }
+    })
     })
   }
 }

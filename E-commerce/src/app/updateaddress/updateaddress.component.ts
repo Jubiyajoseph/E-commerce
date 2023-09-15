@@ -44,10 +44,10 @@ export class UpdateaddressComponent {
     })
 
     this.addressForm = this.formBuilder.group({
-      address: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      state: new FormControl(null, [Validators.required]),
-      country: new FormControl(null, [Validators.required])
+      address: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required])
     })
   }
 
@@ -64,6 +64,7 @@ export class UpdateaddressComponent {
     }
 
   onClickUpdateAddress() {
+
     const id: number = this.route.snapshot.params['id'];
     this.newAddress.residentialAddress = this.addressForm.get('address')?.value;
     this.newAddress.cityId = this.addressForm.get('city')?.value;
@@ -74,16 +75,24 @@ export class UpdateaddressComponent {
       this.username = data;
       this.addressService.getUserId(this.username).subscribe((data) => {
         this.newAddress.userId = data.userId
+
+        if((this.newAddress.cityId==0) || (this.newAddress.stateId ==0 )|| (this.newAddress.countryId ==0 ) || (this.newAddress.residentialAddress.length==0))
+        {
+          alert('Enter Valid Entries');
+        }
+    else{
+     
         this.addressService.updateAddress(this.newAddress, id).subscribe({
           next: (response) => {
             if(response === true){
               alert('Address updated successfully');
             }
-            else{
+            if(response==false){
               alert('ERROR! Address not updated');
             }}
         });
-      })
+      }
+    })
     })
   }
 }

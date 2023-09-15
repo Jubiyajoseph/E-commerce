@@ -34,7 +34,7 @@ namespace E_Commerce_API.Controllers
 
             if (addresses == null)
             {
-                return NotFound(); 
+                return Ok(null); 
             }
 
             return Ok(addresses);

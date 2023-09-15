@@ -21,15 +21,7 @@ export class OrderNowComponent implements OnInit {
   public username!: string;
   userId!: number;
 
-  public OrderQuantity: Icartdetails = {
-    productId: 0,
-    productName: '',
-    unitPrice: 0,
-    weight: 0,
-    stock: 0,
-    quantity: 0,
-    cartId: 0,
-  };
+  
   public productDetails: IProductDetails = {
     id: 0,
     name: '',
@@ -48,7 +40,7 @@ export class OrderNowComponent implements OnInit {
     userId: 0,
     billingAddressId: 0,
     shippingAddressId: 0,
-    orderStatusId: 4,
+    orderStatusId: 4,// default orderid is 4 ie 'your order has been recieved'
     orderedOn: new Date()
   };
   public addressDetails: IUserAddress[] = [];
@@ -70,15 +62,20 @@ export class OrderNowComponent implements OnInit {
       this.addressService.getUserId(this.username).subscribe((data) => {
         this.userId = data.userId;
         this.orderService.getAddress(this.userId).subscribe((data) => {
-          this.addressDetails = data;
+            
+          if(data.length==0){        
+              alert("Add your Address First!");
+          }
+          else{
+            this.addressDetails = data;
+          }
         });
       });
     });
     this.quantityForm = this.formBuilder.group({
       quantity: [' ', Validators.required],
     });
-    this.OrderQuantity.quantity = this.quantityForm.get('quantity')?.value;
-    //console.log(this.OrderQuantity)
+   
     const id: number = this.route.snapshot.params['id'];
     this.productService.getProductById(id).subscribe((data) => {
       this.productDetails = data;
@@ -90,45 +87,81 @@ export class OrderNowComponent implements OnInit {
 
 
   getShippingAdrress(){
-    this.placeOrderDetails.shippingAddressId = this.selectShippingAdressId;
+    if(!this.selectShippingAdressId||this.selectShippingAdressId==null)
+    {
+    alert('Add Your Address First!')
+    }
+    else{
+      this.placeOrderDetails.shippingAddressId = this.selectShippingAdressId;
+    }
+    
   }
 
   placeOrder() {
+
+    if(this.placeOrderDetails.shippingAddressId ==0){
+      alert('Enter Shipping Address!')
+    }
+    else{
     const id: number = this.route.snapshot.params['id'];
     this.cartList.productId = id;
-    this.loginService.username$.subscribe((data) => {
-      this.username = data;
-      this.addressService.getUserId(this.username).subscribe((data) => {
-        this.cartList.userId = data.userId;
-        this.placeOrderDetails.userId = data.userId;
-        this.orderService
+    this.loginService.username$.subscribe((data) => 
+    {
+         this.username = data;
+         this.addressService.getUserId(this.username).subscribe((data) => 
+         {
+         this.cartList.userId = data.userId;
+         this.placeOrderDetails.userId = data.userId;
+         this.orderService
           .getDefaultAddress(this.placeOrderDetails.userId)
-          .subscribe((data) => {
-            this.placeOrderDetails.billingAddressId = data.addressId;
-          });
-        
-        this.placeOrderDetails.orderStatusId = 4;
-        this.cartList.quantity = this.quantityForm.get('quantity')?.value;
-        this.productService.addToCart(this.cartList).subscribe({
-          next: (response) => {
-            if (response === true) {
-              this.productService.placeOrder(this.placeOrderDetails).subscribe({
-                next: (response) => {
-                  if (response === true) {
-                    alert('Order Placed!');
-                  }
-                  else{
-                    alert('Order not Placed!');
-                  }
-                },
-              });
-            } 
-            else{
-              alert('Check Stock First!');
+          .subscribe((data) => 
+          {
+            if(!data || data==null)
+            {
+              alert('Please Set Your Default Address! Then Place Order')
             }
+            else{
+                this.placeOrderDetails.billingAddressId = data.addressId;
+                this.placeOrderDetails.orderStatusId = 4;// default orderid is 4 ie 'your order has been recieved'
+                this.cartList.quantity = this.quantityForm.get('quantity')?.value;
+            
+            if( !this.cartList.quantity || this.cartList.quantity <1 )
+            {
+              alert('Enter Valid Quantity');
+            }
+              else{
+                    this.productService.addToCart(this.cartList).subscribe(
+                    {
+                     next: (response) => 
+                     {
+                      if (response === true) 
+                      {
+                       this.productService.placeOrder(this.placeOrderDetails).subscribe(
+                           {
+                          next: (response) => 
+                           {
+                           if (response === true) 
+                          {
+                            alert('Order Placed!');
+                          }
+                            else
+                              {
+                            alert('Order not Placed!');
+                              }
+                           }
+                            });
+                      } 
+                      if(response === false)
+                       {
+                      alert('Aleardy in Cart OR Check Stock First!');
+                       }
+                 }
+            });
           }
-        });
+          }
+          });
       });
     });
   }
+}
 }
