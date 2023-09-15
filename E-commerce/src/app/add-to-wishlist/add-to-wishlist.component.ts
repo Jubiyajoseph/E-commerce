@@ -33,7 +33,7 @@ export class AddToWishlistComponent implements OnInit {
         this.userId = data.userId;
         this.productService.getWishlist(this.userId).subscribe((data) => {
           this.productDetails = data;
-          console.log(data);
+          
           if (this.productDetails.length === 0) {
             this.isWishlistEmpty = 'Oops! Nothing In Wishlist!';
           }

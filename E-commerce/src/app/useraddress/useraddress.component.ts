@@ -51,7 +51,7 @@ export class UseraddressComponent implements OnInit {
         })
         this.orderService.getDefaultAddress(this.userId).subscribe((data) =>{
           this.defaultAddressDetails = data;
-          if(this.defaultAddressDetails == null){
+          if(this.defaultAddressDetails.addressId == 0){
             this.isNoDefaultAddress= "You have no default address to display!!!"
           }
         })

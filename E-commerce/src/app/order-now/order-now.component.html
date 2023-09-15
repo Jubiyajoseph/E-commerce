@@ -4,7 +4,7 @@
     <p id="p">Product Name:{{productDetails.name}}</p>
     <form  id="form" [formGroup]="quantityForm">
     <label id="p">Quantity:</label>
-    <input type="number" formControlName="quantity">
+    <input type="number" formControlName="quantity" min="1" pattern="[1-9][0-9]*">
     </form>
     <p id="p">Unit Price:{{productDetails.unitPrice}} </p>
    
@@ -14,7 +14,6 @@
   <div id="div">
   <label id="label">Deliver to this address:&nbsp;</label>
   <select [(ngModel)]="selectShippingAdressId" (change)="getShippingAdrress()">
-    <option value="">Select Your Address</option>
     <option *ngFor="let address of addressDetails" [value]="address.addressId">{{address.residentialAddress}},
       {{address.cityName}},{{address.stateName}},{{address.countryName}}</option>
   </select>

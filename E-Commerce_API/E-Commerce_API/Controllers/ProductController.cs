@@ -57,8 +57,13 @@ namespace E_Commerce_API.Controllers
                 .Where(p => p.Name.Contains(searchTerm) ||
                     (p.Category!.Name != null && p.Category.Name.Contains(searchTerm)) ||
                     (p.Brand!.Name != null && p.Brand.Name.Contains(searchTerm))
+<<<<<<< Updated upstream
                 ).ToList();
 
+=======
+                )
+                .ToList();
+>>>>>>> Stashed changes
             if(query == null)
             {
                 return Ok(null);

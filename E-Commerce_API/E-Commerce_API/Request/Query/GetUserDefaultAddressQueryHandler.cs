@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Repository.Context;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_API.Request.Query
@@ -32,7 +33,7 @@ namespace E_Commerce_API.Request.Query
 
             if (addressInfo == null)
             {
-                throw new NotFoundException("Default address not found for the user.");
+                return new AddressDetailsQuery();
             }
             return addressInfo;
         }
