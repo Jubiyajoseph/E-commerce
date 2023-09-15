@@ -12,76 +12,90 @@ import { IProductDetails } from '../iproduct-details';
 })
 export class ProductListComponent implements OnInit {
 
-  products:IProduct[]=[];
+  products: IProduct[] = [];
   currentPage = 1;
-  
- 
+
   public productFormGroup!: FormGroup;
-  filteredSearchList:Array<IProduct>=[];
+  filteredSearchList: Array<IProduct> = [];
+  public isProductEmpty!: string;
 
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
-    private router: Router,   
-    private activatedRoute: ActivatedRoute) 
-    {
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.productFormGroup = this.formBuilder.group({
-       searchTerm: [''] })
-     }
-  ngOnInit()
-  {     
+      searchTerm: ['']
+    })
+  }
+
+  ngOnInit() {
     this.loadProducts(this.currentPage);
   }
 
-  loadProducts(page:number)
-  {
-    this.productService.getProducts(page).subscribe((data)=>
-    {
+  loadProducts(page: number) {
+    this.productService.getProducts(page).subscribe((data) => {
       this.products = data;
     });
-    
+
   }
 
-  previousPage()
-  {
-    if (this.currentPage > 1)
-    {
+  previousPage() {
+    if (this.currentPage > 1) {
       this.currentPage--;
       this.loadProducts(this.currentPage);
     }
   }
 
-  nextPage()
-  {
+  nextPage() {
     this.currentPage++;
     this.loadProducts(this.currentPage);
   }
 
-  search()
-  {
+  search() {
     const searchTerm = this.productFormGroup.value.searchTerm
-     this.productService.getSearchList(searchTerm).subscribe((data)=>
-     {
-      this.products = data;});
+    if (!searchTerm || searchTerm.trim() === '') {
+      alert('Enter something to search!')
+    }
+    else {
+      this.productService.getSearchList(searchTerm).subscribe((data) => {
+        this.products = data;
+        if (this.products.length == 0) {
+          this.isProductEmpty = "Search not found!";
+        }
+      });
+    }
   }
 
-  getDetails(product:IProduct){
+  getDetails(product: IProduct) {
     this.router.navigate([`./${product.id}/product-details`], {
       relativeTo: this.activatedRoute
-    });   
+    });
   }
 
-  viewCart(){
+  reset() {
+    this.isProductEmpty = '';
+    const clearSearchTerm = this.productFormGroup.get('searchTerm');
+    if (clearSearchTerm) {
+      clearSearchTerm.setValue('');
+    }
+    this.loadProducts(1);
+  }
+
+  viewCart() {
     this.router.navigate(['./cart']);
   }
-  viewWishList(){
+
+  viewWishList() {
     this.router.navigate(['./wishlist']);
   }
-  viewOrders(){
+
+  viewOrders() {
     this.router.navigate([`./orders-list`]);
   }
-  showUserAddress(){
+
+  showUserAddress() {
     this.router.navigate(['./user-address'])
   }
- 
+
 }

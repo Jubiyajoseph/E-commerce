@@ -29,7 +29,7 @@ namespace E_Commerce_API.Controllers
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpGet("{productId}")] //getprodcuttable details by productid
+        [HttpGet("{productId}")] 
         public async Task<ActionResult<ProductDetailsQuery>> GetProduct(int productId)
         {
             var query = new GetProductQuery { ProductID = productId };
@@ -42,14 +42,11 @@ namespace E_Commerce_API.Controllers
             return Ok(product);
         }
 
-
-
         [HttpGet] 
         public IActionResult GetAllProduct(int page=1)
         { 
             var products = _context.Product.OrderBy(p=>p.Id).Skip((page-1)* productPages).Take(productPages).ToList();
             return Ok(products);
-            //return Ok(_context.Product); 
         }
         
 
@@ -57,15 +54,25 @@ namespace E_Commerce_API.Controllers
         public ActionResult<IEnumerable<Product>> SearchProducts(string searchTerm)
         {
             var query = _context.Product
-                .Where(p =>
-                    p.Name.Contains(searchTerm) ||
+                .Where(p => p.Name.Contains(searchTerm) ||
                     (p.Category!.Name != null && p.Category.Name.Contains(searchTerm)) ||
                     (p.Brand!.Name != null && p.Brand.Name.Contains(searchTerm))
-                )
-                .ToList();
+                ).ToList();
+
+            if(query == null)
+            {
+                return Ok(null);
+            }
 
             return Ok(query);
         }
 
+        [HttpGet("stock")]
+        public async Task<IActionResult> GetProductStock([FromQuery] GetProductStockStatusQuery query)
+        {
+                var stockQuantity = await _mediator.Send(query);
+                return Ok(stockQuantity);         
         }
+
+    }
 }

@@ -72,12 +72,11 @@ export class ProductService {
   return this.http.get<any>(`${this.baseUrl}/api/OrderDetail?userId=${id}`)
  }
 
- cancelOrder(cancelOrder:any):Observable<any>{
-
-  return this.http.put<any>(`${this.baseUrl}/api/Order`,cancelOrder)
- }
-
  placeOrder(order:any):Observable<any>{
   return this.http.post<any>(`${this.baseUrl}/api/Order/place-order`,order)
+ }
+
+ getProductStock(stock:number):Observable<any>{
+  return this.http.get<any>(`${this.baseUrl}/api/Product/stock?ProductId=${stock}`)
  }
 }
