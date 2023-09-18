@@ -1,5 +1,5 @@
-<h2 id="h2"> My Orders</h2>
-<p id="p-red">{{isOrderListEmpty}}</p>
+<h2 id="h2" align="center"> My Orders</h2>
+<p id="p-red" align="center">{{isOrderListEmpty}}</p>
 
 <!--<input [(ngModel)]="productName" placeholder="Enter product name"> -->
 <form align="center" [formGroup]="orderListFormGroup">
@@ -8,6 +8,7 @@
     <button id="button" (click)="search()">search</button>
     </div>
 </form>
+<br>
 <div  id="div">
      <button id="button" (click)="showSearchByDate=true">search By Date</button>
 </div>

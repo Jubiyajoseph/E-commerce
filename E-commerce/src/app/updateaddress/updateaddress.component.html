@@ -1,4 +1,5 @@
-
+<br>
+<div id="div">
 <form id="form" [formGroup]="addressForm" (ngSubmit)="onClickUpdateAddress()">
     <label>Enter your address:&nbsp;</label>
     <input type="text" formControlName="address">
@@ -41,3 +42,4 @@
   <div *ngIf="showErrors && addressForm?.get('country')?.errors?.['required']">
     Country is required
   </div>
+</div>
