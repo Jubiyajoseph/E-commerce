@@ -23,7 +23,6 @@ namespace E_Commerce_API.Controllers
         }
 
         [HttpGet]
-
         public async Task<ActionResult<WishListDetailsQuery>> GetWishList(int userId)
         {
             var query = new GetWishListQuery { UserId = userId };
@@ -44,11 +43,5 @@ namespace E_Commerce_API.Controllers
         }
 
 
-        [HttpDelete]
-        public async Task<bool> DeleteWishList(int wishListId)
-        {
-            var command = new DeleteWishListCommand { WishListId = wishListId };
-            return await _mediator.Send(command);
-        }
     }
 }

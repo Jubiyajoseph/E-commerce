@@ -8,6 +8,7 @@ import { AddressService } from '../address/address.service';
 import { IwishlistProducts } from '../iwishlist-products';
 import { IProduct } from '../iproduct';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IupdateWishlist } from '../iupdate-wishlist';
 
 @Component({
   selector: 'app-add-to-wishlist',
@@ -19,6 +20,12 @@ export class AddToWishlistComponent implements OnInit {
   userId!: number;
   public productDetails: IwishlistProducts[] = [];
   isWishlistEmpty!: string;
+
+  public updateQuery: IupdateWishlist = {
+    userID: 0,
+    productID: 0,
+  }
+  
   constructor(
     private loginService: LoginService,
     private addressService: AddressService,
@@ -47,15 +54,23 @@ export class AddToWishlistComponent implements OnInit {
       relativeTo: this.activatedRoute,
     });
   }
+
   deleteWishlist(id: number) {
-    this.productService.deleteWishList(id).subscribe({
-      next: (response) => {
-        if (response === true) {
-          alert('Deleted Successfully');
-        } else {
-          alert('Error! Cannot Delete');
-        }
-      },
-    });
+    this.loginService.username$.subscribe((data)=>{
+      this.username = data;
+      this.addressService.getUserId(this.username).subscribe((data)=>{
+        this.updateQuery.userID = data.userId;
+        this.updateQuery.productID= id;
+        this.productService.updateWishList(this.updateQuery).subscribe({
+          next: (response) => {
+                if (response === true) {
+                  alert('Deleted Successfully');
+                } else {
+                  alert('Error! Cannot Delete');
+                }
+              }
+        })
+      })
+    })
   }
 }

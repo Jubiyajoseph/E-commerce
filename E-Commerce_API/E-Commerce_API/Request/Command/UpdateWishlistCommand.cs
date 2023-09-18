@@ -7,6 +7,6 @@ namespace E_Commerce_API.Request.Command
     {
         public int UserID { get; set; }
         public int ProductID { get; set; }  
-      //  public bool IsDeleted { get; set; }
+
     }
 }

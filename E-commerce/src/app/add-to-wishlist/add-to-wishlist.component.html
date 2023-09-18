@@ -2,5 +2,5 @@
 <p>{{isWishlistEmpty}}</p>
 <div id="div" *ngFor="let item of productDetails">
     <p id="p" (click)="getWishlistProductDetails(item.productId)"> {{item.productName}}</p>
-    <button id="button" (click)="deleteWishlist(item.wishListId)">Delete</button>
+    <button id="button" (click)="deleteWishlist(item.productId)">Delete</button>
 </div>

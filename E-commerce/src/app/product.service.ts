@@ -52,19 +52,14 @@ export class ProductService {
     return this.http.get<any>(`${this.baseUrl}/api/Cart/${id}`)
   }
 
-  updateWishList(updateQuery:IupdateWishlist):Observable<void>
+  updateWishList(updateQuery:IupdateWishlist):Observable<boolean>
   {
-    return this.http.put<void>(`${this.baseUrl}/api/WishList`,updateQuery)
+    return this.http.put<boolean>(`${this.baseUrl}/api/WishList`,updateQuery)
   }
 
   deleteCart(id:number):Observable<any>
   {
     return this.http.delete<any>(`${this.baseUrl}/api/Cart?cartId=${id}`)
-  }
-  
-  deleteWishList(id:number):Observable<any>
-  {
-    return this.http.delete<any>(`${this.baseUrl}/api/WishList?wishListId=${id}`)
   }
   
  getOrderDetails(id:number):Observable<any>
