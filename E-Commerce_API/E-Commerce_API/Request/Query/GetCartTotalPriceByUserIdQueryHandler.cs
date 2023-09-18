@@ -6,8 +6,8 @@ namespace E_Commerce_API.Request.Query
 {
     public class GetCartTotalPriceByUserIdQueryHandler : IRequestHandler<GetCartTotalPriceByUserIdQuery, decimal>
     {
-        private readonly E_Commerce_DbContext _context;
-        public GetCartTotalPriceByUserIdQueryHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public GetCartTotalPriceByUserIdQueryHandler(ECommerceDbContext context)
         {
             _context = context;
         }

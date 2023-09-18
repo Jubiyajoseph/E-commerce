@@ -11,9 +11,9 @@ namespace E_Commerce_API.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public CountryController(E_Commerce_DbContext context)
+        public CountryController(ECommerceDbContext context)
         {
             _context = context;
         }

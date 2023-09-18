@@ -7,9 +7,9 @@ namespace E_Commerce_API.Request.Command
 {
     public class UpdateStatusCommandHandler:IRequestHandler<UpdateStatusCommand,bool>
     {
-        public readonly E_Commerce_DbContext _context;
+        public readonly ECommerceDbContext _context;
 
-        public UpdateStatusCommandHandler(E_Commerce_DbContext context)
+        public UpdateStatusCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

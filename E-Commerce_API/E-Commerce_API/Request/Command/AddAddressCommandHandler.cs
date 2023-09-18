@@ -6,8 +6,8 @@ namespace E_Commerce_API.Request.Command
 {
     public class AddAddressCommandHandler : IRequestHandler<AddAddressCommand, bool>
     {
-        private readonly E_Commerce_DbContext _context;
-        public AddAddressCommandHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public AddAddressCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

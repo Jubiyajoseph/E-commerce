@@ -5,9 +5,9 @@ namespace E_Commerce_API.Request.Command
 {
     public class UpdateAddressCommandHandler: IRequestHandler<UpdateAddressCommand,bool>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public UpdateAddressCommandHandler(E_Commerce_DbContext context)
+        public UpdateAddressCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

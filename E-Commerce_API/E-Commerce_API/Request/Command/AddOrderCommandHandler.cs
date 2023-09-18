@@ -6,8 +6,8 @@ namespace E_Commerce_API.Request.Command
 {
     public class AddOrderCommandHandler : IRequestHandler<AddOrderCommand, bool>
     {
-        private readonly E_Commerce_DbContext _context;
-        public AddOrderCommandHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public AddOrderCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

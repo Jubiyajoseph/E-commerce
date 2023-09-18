@@ -6,9 +6,9 @@ namespace E_Commerce_API.Request.Command
 {
     public class AddUserCommandHandler: IRequestHandler<AddUserCommand, bool>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public AddUserCommandHandler(E_Commerce_DbContext context)
+        public AddUserCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

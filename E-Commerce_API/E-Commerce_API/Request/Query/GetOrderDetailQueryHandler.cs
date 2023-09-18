@@ -6,9 +6,9 @@ namespace E_Commerce_API.Request.Query
 {
     public class GetOrderDetailQueryHandler:IRequestHandler<GetOrderDetailQuery, List<OrderDetailsQuery>>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public GetOrderDetailQueryHandler(E_Commerce_DbContext context)
+        public GetOrderDetailQueryHandler(ECommerceDbContext context)
         {
             _context = context;
         }

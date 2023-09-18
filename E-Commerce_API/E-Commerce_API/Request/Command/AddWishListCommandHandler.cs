@@ -7,17 +7,16 @@ namespace E_Commerce_API.Request.Command
 {
     public class AddWishListCommandHandler:IRequestHandler<AddWishListCommand,bool>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public AddWishListCommandHandler(E_Commerce_DbContext context)
+        public AddWishListCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }
 
         public async Task<bool> Handle(AddWishListCommand command, CancellationToken cancellationToken)
         {
-            //only one user & one productid & isdeleted 0 can add to wishlist table
-            bool isAlreadyInWishList= await _context.WishList.AnyAsync(w=>w.UserID==command.UserID && w.ProductID==command.ProductID,cancellationToken);
+            bool isAlreadyInWishList= await _context.WishList.AnyAsync(w=>w.UserID==command.UserID && w.ProductID==command.ProductID && w.IsDeleted == false,cancellationToken);
             if (isAlreadyInWishList)
             {
                 return false;

@@ -11,9 +11,9 @@ namespace E_Commerce_API.Controllers
     [ApiController]
     public class StateController : ControllerBase
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public StateController(E_Commerce_DbContext context)
+        public StateController(ECommerceDbContext context)
         {
             _context = context;
         }

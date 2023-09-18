@@ -7,8 +7,8 @@ namespace E_Commerce_API.Request.Command
 {
     public class UpdateProductStockCommandHandler : IRequestHandler<UpdateProductStockCommand, bool>
     {
-        private readonly E_Commerce_DbContext _context;
-        public UpdateProductStockCommandHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public UpdateProductStockCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

@@ -13,8 +13,8 @@ namespace E_Commerce_API.Controllers
     public class OrderStatusController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly E_Commerce_DbContext _context;
-        public OrderStatusController(IMediator mediator,E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public OrderStatusController(IMediator mediator,ECommerceDbContext context)
         {
             _mediator = mediator;
             _context = context;

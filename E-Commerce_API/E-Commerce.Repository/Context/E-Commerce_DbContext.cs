@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Repository.Context
 {
-    public class E_Commerce_DbContext:DbContext
+    public class ECommerceDbContext:DbContext
     {
-        public E_Commerce_DbContext(DbContextOptions options) : base(options) 
+        public ECommerceDbContext(DbContextOptions options) : base(options) 
         {
              
         }   

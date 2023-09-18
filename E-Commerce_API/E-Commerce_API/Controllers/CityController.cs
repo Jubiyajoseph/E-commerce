@@ -11,8 +11,8 @@ namespace E_Commerce_API.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly E_Commerce_DbContext _context;
-        public CityController(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public CityController(ECommerceDbContext context)
         {
             _context = context;
 
