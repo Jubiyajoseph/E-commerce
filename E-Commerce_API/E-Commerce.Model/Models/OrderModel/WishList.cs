@@ -32,6 +32,10 @@ namespace E_Commerce.Model.Models.OrderModel
             IsDeleted = isDeleted;
 
         }
+        public void UpdateIsDeleted(bool isDeleted)
+        {
+            IsDeleted = isDeleted;
+        }
     }
 
     
