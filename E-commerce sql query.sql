@@ -1,9 +1,9 @@
 SELECT * FROM [Address]
+SELECT * FROM [User]
 SELECT * FROM Product
 SELECT * FROM Cart
-SELECT * FROM OrderDetail
 SELECT * FROM [Order]
-SELECT * FROM OrderStatus
+SELECT * FROM OrderDetail
 --drop table OrderStatus
 --drop table Cart
 

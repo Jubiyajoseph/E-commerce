@@ -1,6 +1,8 @@
-<h2>&nbsp;Product Details</h2>
-<p id="p">{{isCartEmpty}}</p>
+
+
 <div><!-- place *ngFor here to display product details from cart table-->
+  <h2 align="center">&nbsp;Product Details</h2>
+  <p id="p" align="center">{{isCartEmpty}}</p>
   <div id="div" *ngFor="let item of cartDetails">
     <label>
       <p id="p"> Product Name:{{item.productName}}</p>
@@ -9,6 +11,7 @@
     </label> 
     <button id="button" (click)="deleteCart(item.cartId)">Delete</button>  
   </div>
+  <br>
   <div  id="div" *ngIf="!isCartEmpty">
     <br>
     <label id="label">Deliver to this address:&nbsp;&nbsp;</label>
