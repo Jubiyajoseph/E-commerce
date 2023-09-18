@@ -12,8 +12,8 @@ namespace E_Commerce_API.Controllers
     public class BrandController : ControllerBase
     {
 
-        private readonly E_Commerce_DbContext _context;
-        public BrandController(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public BrandController(ECommerceDbContext context)
         {
             _context = context;
 

@@ -6,9 +6,9 @@ namespace E_Commerce_API.Request.Command
 {
     public class UpdateIsDefaultCommandHandler : IRequestHandler<UpdateIsDefaultCommand, bool>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public UpdateIsDefaultCommandHandler(E_Commerce_DbContext context)
+        public UpdateIsDefaultCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

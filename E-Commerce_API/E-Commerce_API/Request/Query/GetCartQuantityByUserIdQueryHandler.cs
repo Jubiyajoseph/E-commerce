@@ -6,8 +6,8 @@ namespace E_Commerce_API.Request.Query
 {
     public class GetCartQuantityByUserIdQueryHandler : IRequestHandler<GetCartQuantityByUserIdQuery, bool>
     {
-        private readonly E_Commerce_DbContext _context;
-        public GetCartQuantityByUserIdQueryHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public GetCartQuantityByUserIdQueryHandler(ECommerceDbContext context)
         {
             _context = context;
         }

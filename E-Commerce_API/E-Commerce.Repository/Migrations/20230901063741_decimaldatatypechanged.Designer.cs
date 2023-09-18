@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_Commerce.Repository.Migrations
 {
-    [DbContext(typeof(E_Commerce_DbContext))]
+    [DbContext(typeof(ECommerceDbContext))]
     [Migration("20230901063741_decimaldatatypechanged")]
     partial class decimaldatatypechanged
     {

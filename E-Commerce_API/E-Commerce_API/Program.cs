@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<E_Commerce_DbContext>(option =>
+builder.Services.AddDbContext<ECommerceDbContext>(option =>
 {
     
     option.UseSqlServer(builder.Configuration["ConnectionString:SqlServer"], 

@@ -8,8 +8,8 @@ namespace E_Commerce_API.Request.Query
     public class GetUserDefaultAddressQueryHandler : IRequestHandler<GetUserDefaultAddressQuery, AddressDetailsQuery>
 
     {
-        private readonly E_Commerce_DbContext _context;
-        public GetUserDefaultAddressQueryHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public GetUserDefaultAddressQueryHandler(ECommerceDbContext context)
         {
             _context = context;
         }

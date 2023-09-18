@@ -15,9 +15,9 @@ namespace E_Commerce_API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private E_Commerce_DbContext _context;
+        private ECommerceDbContext _context;
         private const int productPages = 10;
-        public ProductController(E_Commerce_DbContext context, IMediator mediator)
+        public ProductController(ECommerceDbContext context, IMediator mediator)
         {
             _context = context;
             _mediator = mediator;

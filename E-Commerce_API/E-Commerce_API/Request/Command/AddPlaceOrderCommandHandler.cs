@@ -8,10 +8,10 @@ namespace E_Commerce_API.Request.Command
 {
     public class AddPlaceOrderCommandHandler:IRequestHandler<AddPlaceOrderCommand,bool>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
         private readonly IMediator _mediator;
 
-        public AddPlaceOrderCommandHandler(E_Commerce_DbContext context, IMediator mediator)
+        public AddPlaceOrderCommandHandler(ECommerceDbContext context, IMediator mediator)
         {
             _context = context;
             _mediator = mediator;

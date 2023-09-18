@@ -5,9 +5,9 @@ namespace E_Commerce_API.Request.Command
 {
     public class UpdateIsDeletedCommandHandler : IRequestHandler<UpdateIsDeletedCommand, bool>
     {
-        private readonly E_Commerce_DbContext _context; 
+        private readonly ECommerceDbContext _context; 
 
-        public UpdateIsDeletedCommandHandler(E_Commerce_DbContext context)
+        public UpdateIsDeletedCommandHandler(ECommerceDbContext context)
         {
             _context = context;
         }

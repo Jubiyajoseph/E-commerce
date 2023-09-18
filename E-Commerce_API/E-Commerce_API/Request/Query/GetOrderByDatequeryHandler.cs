@@ -6,9 +6,9 @@ namespace E_Commerce_API.Request.Query
 {
     public class GetOrderByDatequeryHandler:IRequestHandler<GetOrderByDateQuery,List<OrderDetailsQuery>>
     {
-        public readonly E_Commerce_DbContext _context;
+        public readonly ECommerceDbContext _context;
 
-        public GetOrderByDatequeryHandler(E_Commerce_DbContext context)
+        public GetOrderByDatequeryHandler(ECommerceDbContext context)
         {
             _context = context;
         }

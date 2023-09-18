@@ -15,9 +15,9 @@ namespace E_Commerce_API.Controllers
     public class OrderDetailController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public OrderDetailController(IMediator mediator, E_Commerce_DbContext context)
+        public OrderDetailController(IMediator mediator, ECommerceDbContext context)
         {
             _mediator = mediator;
             _context = context;

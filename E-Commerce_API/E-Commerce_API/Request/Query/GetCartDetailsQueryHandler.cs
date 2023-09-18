@@ -8,9 +8,9 @@ namespace E_Commerce_API.Request.Query
 {
     public class GetCartDetailsQueryHandler:IRequestHandler<GetUserIDQuery,List<CartDetailsQuery>>
     {
-        private readonly E_Commerce_DbContext _context;
+        private readonly ECommerceDbContext _context;
 
-        public GetCartDetailsQueryHandler(E_Commerce_DbContext context)
+        public GetCartDetailsQueryHandler(ECommerceDbContext context)
         {
             _context = context;
         }

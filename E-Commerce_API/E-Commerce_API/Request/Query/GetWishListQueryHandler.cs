@@ -7,8 +7,8 @@ namespace E_Commerce_API.Request.Query
 {
     public class GetWishListQueryHandler : IRequestHandler<GetWishListQuery, List<WishListDetailsQuery>>
     {
-        private readonly E_Commerce_DbContext _context;
-        public GetWishListQueryHandler(E_Commerce_DbContext context)
+        private readonly ECommerceDbContext _context;
+        public GetWishListQueryHandler(ECommerceDbContext context)
         {
             _context = context;
         }
