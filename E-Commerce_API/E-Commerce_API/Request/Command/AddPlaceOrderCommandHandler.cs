@@ -34,8 +34,7 @@ namespace E_Commerce_API.Request.Command
                                   command.OrderStatusId);
 
                 if (order != null)
-                {
-                    // Get all items in the cart for the user where OrderId is null
+                {                  
                     bool isCartItems = await _context.Cart
                         .Where(cartItem => cartItem.UserId == command.UserId && cartItem.OrderId == null)
                         .AnyAsync();
@@ -74,15 +73,13 @@ namespace E_Commerce_API.Request.Command
                     }
 
                     //update stock of each product in product table. 
-                    var isStockUpdated = await _mediator.Send(new UpdateProductStockCommand { UserId = command.UserId });
+                    var stockUpdate = await _mediator.Send(new UpdateProductStockCommand { UserId = command.UserId });
 
                     // Update the Cart table to link the cart items to the new order
 
                     foreach (var cartItem in cartItems)
-                    {
-                        //  cartItem.OrderId = newOrderId;
+                    {                      
                         cartItem.UpdateOrderIdInCart(newOrderId);
-
                     }
 
                     await _context.SaveChangesAsync(cancellationToken);
