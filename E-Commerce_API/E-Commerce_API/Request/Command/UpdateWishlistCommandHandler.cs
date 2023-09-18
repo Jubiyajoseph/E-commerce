@@ -16,21 +16,23 @@ namespace E_Commerce_API.Request.Command
         }
 
         public async Task<bool> Handle(UpdateWishlistCommand command,CancellationToken cancellationToken)
-        { 
-            
-            int wishListId = await _context.WishList
-                .Where(w => w.ProductID == command.ProductID && w.UserID == command.UserID && w.IsDeleted==false)
+        {
+            //var isProductInWishlist = await _context.WishList.AnyAsync(w => w.UserID == command.UserID && w.ProductID == command.ProductID, cancellationToken);
+            int wishListId = await _context.WishList.Where(w => w.ProductID == command.ProductID
+            && w.UserID == command.UserID && w.IsDeleted==false)
                             .Select(w => w.WishListId).FirstOrDefaultAsync(cancellationToken);
-
             var wishList = await _context.WishList.FindAsync(wishListId);
 
+            
                 if (wishList == null)
                 {
                     return false;
                 }
+
                 wishList.UpdateIsDeleted(true);
                 await _context.SaveChangesAsync(cancellationToken);
                 return true;
+          
         }
     }
 }
