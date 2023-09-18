@@ -1,17 +1,17 @@
 <form align="center" [formGroup]="productFormGroup">
     <div id="div" class="product-list">
         <div>
-            <input type="text" formControlName="searchTerm" placeholder="Search" size="134px" />
+            <input type="text" formControlName="searchTerm" placeholder="Search" size="134px"/>
             <button id="button" (click)="search()">Search</button>
             <button id="button" (click)="reset()">Reset</button>
         </div>
         <br> 
         {{isProductEmpty}}
         <div class="product-item" *ngIf="!isProductEmpty">
-            <table id="table">
+            <table id="table" align="center">
                 <tr id="tr">
                     <th id="th">Id</th>
-                    <th id="th">ProductName</th>
+                    <th id="th">Product Name</th>
                 </tr>
                 <tr *ngFor="let product of products" (click)="getDetails(product)">
                     <td id="td">{{product.id}}</td>
@@ -23,9 +23,9 @@
 </form>
 <div id="div" class="pagination">
     <button id="button" (click)="previousPage()"> Previous </button>
-    <button id="button" (click)="nextPage()">Next </button>
+    <button id="button" (click)="nextPage()" class="next-button">Next </button>
 </div>
-<div>
+<div align="center">
     <button id="button" (click)="viewCart()"> View Cart </button>
     <button id="button" (click)="viewWishList()"> My WishList </button>
     <button id="button" (click)="viewOrders()"> My Orders </button>

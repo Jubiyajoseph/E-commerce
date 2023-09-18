@@ -1,4 +1,5 @@
-
+<br><br>
+<div id="div">
 <form id="form" [formGroup]="addressForm" (ngSubmit)="onClickAddress()">
   <label>Enter your address:&nbsp;</label>
   <input type="text" formControlName="address">
@@ -10,21 +11,22 @@
   </select>
 
   <br><br>
-  <label>State:</label>
+  <label>State: &nbsp;&nbsp;</label>
   <select formControlName="state">
     <option *ngFor="let state of states" [value]="state.stateId">{{ state.name }}</option>
   </select>
 
   <br><br>
-  <label>Country:</label>
+  <label>Country:&nbsp;&nbsp;</label>
   <select formControlName="country">
     <option *ngFor="let country of countries" [value]="country.countryId">{{ country.name }}</option>
   </select>
   <br><br>
+  <br>
+ <button id="button" type="submit" (click)="showErrors= true">Add Address</button>
 
-  <button id="button" type="submit" (click)="showErrors= true">Add Address</button>
 </form>
-
+</div>
 
 <div *ngIf="showErrors && addressForm?.get('address')?.errors?.['required']">
   First name is required
