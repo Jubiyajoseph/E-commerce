@@ -7,16 +7,16 @@
         <p id="p">Category : {{productDetails.categoryName}}</p>
         <p id="p">Price : Rs {{ productDetails.unitPrice}} </p>
         <form id="form" [formGroup]="quantityForm">
-            <button id="button" (click)="showQuantity=true" [disabled]="outOfStockDisabled">Add To Cart</button>
+            <button class="btn" (click)="showQuantity=true" [disabled]="outOfStockDisabled">Add To Cart</button>
             <div *ngIf="showQuantity">
                 <label>Quantity:</label>
                 <input type="number" formControlName="quantity" min="1" pattern="[1-9][0-9]*">
-                <button id="button" (click)="toAddToCart()">Add</button>
+                <button class="btn" (click)="toAddToCart()">Add</button>
             </div>
         </form>
 
-        <button id="button" (click)="toAddToWishlist()">Add to Wishlist</button>
+        <button class="btn" (click)="toAddToWishlist()">Add to Wishlist</button>
         
-        <button id="button" (click)="buyNow()" [disabled]="outOfStockDisabled">Buy Now</button>
+        <button class="btn" (click)="buyNow()" [disabled]="outOfStockDisabled">Buy Now</button>
     </div>
 </div>
